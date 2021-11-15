@@ -1,7 +1,5 @@
 import './App.css';
 import logo from './pictures/logo.png'
-import House from './components/house';
-import About from './components/about';
 
 
 
@@ -30,9 +28,8 @@ function App() {
   return (
     <div className="App">
       <nav className='navbar'><img className='logo' src={logo} alt='logo' />
-        <House></House>
-        <About></About>
-
+        <a href='#' className='house' >Houses</a>
+        <a href='#' className='about' >About</a>
       </nav>
 
     </div>
