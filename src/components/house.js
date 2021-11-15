@@ -3,7 +3,7 @@ import React from 'react'
 const House = () => {
   return (
     <>
-      <a href='houses' className='house'>Houses</a>
+      <a href='houses' >Houses</a>
     </>
   )
 }
