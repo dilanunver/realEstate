@@ -1,25 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import logo from './pictures/logo.png'
+import House from './components/house';
+import About from './components/about';
+
+
 
 function App() {
+
+  //get 
+  const myHeaders = new Headers();
+  myHeaders.append("X-Api-Key", "jSW54MUV9fmlHLsg_XdCT3xq6DAvaJch");
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  const headerFetch = async () => {
+    const response = await fetch("https://intern-api.docker-dev.d-tt.nl/api/houses", requestOptions)
+    const result = await response.json();
+    console.log(result)
+  }
+  headerFetch()
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav className='navbar'><img className='logo' src={logo} alt='logo' />
+        <House></House>
+        <About></About>
+
+      </nav>
+
     </div>
   );
 }
+
 
 export default App;
