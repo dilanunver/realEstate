@@ -3,18 +3,60 @@
   padding: 0;
   box-sizing: border-box;
 }
-.navbar {
+.App {
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-family: Montserrat;
   font-weight: bold;
   margin-top: 15px;
-  display: flex;
-  justify-self: start;
-  align-items: center;
-  padding-left: 15.75rem;
+  margin-left: 10rem;
 }
-.navbar a {
-  color: #000000;
+.navItems {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #e8e8e8;
+  width: 40%;
+  font-size: 22px;
+  list-style: none;
+}
+.nav-link {
+  color: #e8e8e8;
   text-decoration: none;
+}
+.nav-link.active {
+  color: #000000;
+}
+.header1 {
   font-size: 32px;
-  padding-left: 10rem;
+  display: flex;
+  justify-content: flex-start;
+}
+.house {
+  background-color: #f6f6f6;
+  min-height: 100%;
+}
+.create {
+  text-transform: uppercase;
+  background-color: #eb5440;
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+  font-family: Montserrat;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.headerCreate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 10rem;
+  padding-top: 35px;
 }
