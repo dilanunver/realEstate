@@ -42,6 +42,11 @@ nav {
   min-height: 100%;
 }
 .create {
+  background: url(../src/pictures/plus.png) no-repeat;
+  background-position: bottom 13px left 15px;
+  display: flex;
+  padding: 10px 46px;
+  width: 220px;
   text-transform: uppercase;
   background-color: #eb5440;
   color: #ffffff;
@@ -49,7 +54,6 @@ nav {
   font-size: 18px;
   font-family: Montserrat;
   font-weight: bold;
-  padding: 10px;
   border-radius: 10px;
 }
 
@@ -59,4 +63,34 @@ nav {
   align-items: center;
   margin: 15px 10rem;
   padding-top: 35px;
+}
+
+.houseImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.input {
+  background: url(../src/pictures/search.png) no-repeat;
+  background-position: 30px 10px;
+  background-color: #e8e8e8;
+  display: flex;
+  margin: 25px 10rem;
+  padding: 10px 70px;
+  border-radius: 10px;
+  font-family: Open Sans Regular;
+  font-size: 14px;
+  border: none;
+}
+.houseInfo {
+  background-color: #ffffff;
+  margin: 15px 10rem;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
 }

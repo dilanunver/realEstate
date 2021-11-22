@@ -1,13 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+
 
 const House = ({ houses }) => {
 
-  console.log(houses)
+
   return (
     <div className='house'>
-      <div className='headerCreate'><h1 className='header1'>Houses</h1>
-        <button className='create'>+ Create New</button></div>
-      {houses.map((house) => <h1>size: {house.size}m2</h1>)}
+
+      <div className='headerCreate'>
+        <h1 className='header1'>Houses</h1>
+        <button className='create'>Create New</button>
+      </div>
+
+      <input type='text' className='input' placeholder='Search for a house' />
+
+      {houses.map((house) =>
+        <div className='houseInfo'>
+
+          <img className='houseImg'
+            src={house.image}
+            alt='houseImg'>
+          </img>
+          <span className='street'>
+            {house.location.street}</span>
+
+        </div>)}
+
 
 
     </div>
