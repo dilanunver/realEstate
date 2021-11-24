@@ -21,18 +21,20 @@ function App() {
     headers: myHeaders,
     redirect: 'follow'
   };
+
+
+
   useEffect(() => {
+    const headerFetch = async () => {
+      setLoading(true)
+      const response = await fetch("https://intern-api.docker-dev.d-tt.nl/api/houses", requestOptions)
+      const result = await response.json()
+      console.log(result);
+      setHouses(result)
+      setLoading(false)
+    }
     headerFetch()
   }, [])
-
-  const headerFetch = async () => {
-    setLoading(true)
-    const response = await fetch("https://intern-api.docker-dev.d-tt.nl/api/houses", requestOptions)
-    const result = await response.json()
-    console.log(result);
-    setHouses(result)
-    setLoading(false)
-  }
 
 
   if (loading) {
@@ -53,15 +55,7 @@ function App() {
         </Routes>
       </div>
     </Router>
-
-
-
   )
-
-
-
-
-
 }
 
 

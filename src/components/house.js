@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import SingleHouse from './SingleHouse'
 
 
 
@@ -16,20 +17,10 @@ const House = ({ houses }) => {
       <input type='text' className='input' placeholder='Search for a house' />
 
       {houses.map((house) =>
-        <div className='houseInfo'>
+        <SingleHouse house={house}></SingleHouse>)
+      }
 
-          <img className='houseImg'
-            src={house.image}
-            alt='houseImg'>
-          </img>
-          <span className='street'>
-            {house.location.street}</span>
-
-        </div>)}
-
-
-
-    </div>
+    </div >
   )
 }
 

@@ -3,9 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-.App {
-  text-align: center;
-}
 
 nav {
   display: flex;
@@ -93,4 +90,59 @@ nav {
   border-radius: 10px;
   padding: 15px;
   display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+}
+.aboutHouse {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.street {
+  padding-left: 15px;
+  font-size: 18px;
+  font-family: Montserrat;
+  font-weight: bold;
+}
+.price {
+  font-family: Montserrat;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+.city {
+  padding-left: 15px;
+  color: #c3c3c3;
+  font-family: Montserrat;
+  font-size: 16px;
+}
+.insideHouse {
+  padding: 15px;
+  display: flex;
+}
+.bed {
+  background: url(../src/pictures/ic_bed.png) no-repeat;
+  background-position: 3px;
+  padding-left: 40px;
+  padding-right: 10px;
+  display: flex;
+}
+.bath {
+  background: url(../src/pictures/ic_bath.png) no-repeat;
+  background-position: 3px;
+  padding-left: 40px;
+  padding-right: 10px;
+  display: flex;
+}
+.size {
+  background: url(../src/pictures/ic_size.png) no-repeat;
+  background-position: 3px;
+  padding-left: 40px;
+  padding-right: 10px;
+  display: flex;
+}
+.showing-items {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
