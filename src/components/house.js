@@ -1,22 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SingleHouse from './SingleHouse'
 
 
 
 const House = ({ houses }) => {
 
-  const [byPriceActive, setByPriceActive] = useState(false)
+
+  const [byPrice, setByPrice] = useState(houses)
+  const [bySize, setBySize] = useState(houses)
+  const [byPriceActive, setByPriceActive] = useState(true)
   const [bySizeActive, setBySizeActive] = useState(false)
+
+
   const buttonPriceHandler = () => {
     setByPriceActive(true)
     setBySizeActive(false)
-
-  };
+    let sortByPrice = houses.sort(function (a, b) { return a.price - b.price });
+    setByPrice(sortByPrice)
+    console.log(byPrice)
+  }
   const buttonSizeHandler = () => {
     setBySizeActive(true)
     setByPriceActive(false)
+    let sortBySize = houses.sort(function (a, b) { return a.size - b.size })
+    setBySize(sortBySize)
   }
-
 
 
   return (
