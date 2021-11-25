@@ -15,7 +15,7 @@ const SingleHouse = ({ house }) => {
 
   }
   return (
-    < div className='houseInfo' onClick={ShowResult} onMouseEnter={() => setShowItem(true)}
+    < div className='houseInfo' onClick={ShowResult} onMouseEnter={() => setShowItem(true)} onMouseLeave={() => setShowItem(false)}
     >
       <div style={{ display: 'flex' }}>
         <img className='houseImg'
@@ -42,13 +42,16 @@ const SingleHouse = ({ house }) => {
       </div>
       {showItem &&
         <div className='showing-items'>
+
           <img
-            src={deleteObj}
-            alt='houseObj'>
+            className='edit'
+            src={editObj}
+            alt='editObj'>
           </img>
           <img
-            src={editObj}
-            alt='houseObj'>
+            className='delete'
+            src={deleteObj}
+            alt='deleteObj'>
           </img>
         </div>
       }
