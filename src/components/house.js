@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import SingleHouse from './SingleHouse'
 
 
 
-const House = ({ houses }) => {
+const House = ({ houses, deletingItems }) => {
 
 
   const [byPrice, setByPrice] = useState(houses)
@@ -26,7 +26,6 @@ const House = ({ houses }) => {
     setBySize(sortBySize)
   }
 
-
   return (
     <div className='house'>
 
@@ -42,7 +41,7 @@ const House = ({ houses }) => {
         </div>
       </div>
       {houses.map((house) =>
-        <SingleHouse house={house}></SingleHouse>)
+        <SingleHouse house={house} deletingItems={deletingItems} ></SingleHouse>)
       }
 
     </div >

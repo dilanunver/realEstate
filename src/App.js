@@ -22,20 +22,38 @@ function App() {
     redirect: 'follow'
   };
 
+  //delete 
+  const deleteHeaders = new Headers();
+  deleteHeaders.append("X-Api-Key", "jSW54MUV9fmlHLsg_XdCT3xq6DAvaJch");
+
+  var deleteOptions = {
+    method: 'DELETE',
+    headers: deleteHeaders,
+    redirect: 'follow'
+  };
 
 
   useEffect(() => {
     const headerFetch = async () => {
       setLoading(true)
       const response = await fetch("https://intern-api.docker-dev.d-tt.nl/api/houses", requestOptions)
-      const result = await response.json()
-      console.log(result);
+      const result = await response.json();
       let byPrice = result.sort(function (a, b) { return a.price - b.price })
       setHouses(byPrice)
       setLoading(false)
     }
     headerFetch()
   }, [])
+
+
+  const deletingItems = async (selectedHouse) => {
+
+    const url = `https://intern-api.docker-dev.d-tt.nl/api/houses/${selectedHouse.id}`
+    const response = await fetch(url, deleteOptions)
+    const result = await response.json();
+    console.log(result)
+  }
+
 
 
   if (loading) {
@@ -51,7 +69,7 @@ function App() {
       <div className="App">
         <Nav />
         <Routes>
-          <Route path="/house" element={<House houses={houses} ></House>} />
+          <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
         </Routes>
       </div>

@@ -4,16 +4,17 @@ import editObj from '../pictures/edit.png'
 
 
 
-const SingleHouse = ({ house }) => {
+const SingleHouse = ({ house, deletingItems }) => {
 
 
   const [showItem, setShowItem] = useState(false)
-
 
   const ShowResult = () => {
     setShowItem(true)
 
   }
+
+
   return (
     < div className='houseInfo' onClick={ShowResult} onMouseEnter={() => setShowItem(true)} onMouseLeave={() => setShowItem(false)}
     >
@@ -48,7 +49,7 @@ const SingleHouse = ({ house }) => {
             src={editObj}
             alt='editObj'>
           </img>
-          <img
+          <img onClick={() => deletingItems(house)}
             className='delete'
             src={deleteObj}
             alt='deleteObj'>
