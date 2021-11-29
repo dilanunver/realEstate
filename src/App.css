@@ -11,7 +11,7 @@ nav {
   font-family: Montserrat;
   font-weight: bold;
   margin-top: 15px;
-  margin-left: 10rem;
+  margin-left: 20rem;
 }
 .navItems {
   display: flex;
@@ -52,6 +52,8 @@ nav {
   font-family: Montserrat;
   font-weight: bold;
   border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .headerCreate {
@@ -187,4 +189,106 @@ nav {
 .by-price.active,
 .by-size.active {
   background-color: #eb5440;
+}
+
+.create-post {
+  margin: 15px 0px 0px 0px;
+  background-image: url(../src/pictures/img_background.png);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  height: 100%;
+  padding-top: 35px;
+  width: 100%;
+}
+.back {
+  background: url(../src/pictures/ic_back_grey.png);
+  background-repeat: no-repeat;
+  margin: 55px 20rem;
+  text-decoration: none;
+  font-family: Montserrat;
+  font-weight: bold;
+  color: #000000;
+  padding-left: 40px;
+}
+h2 {
+  font-family: Montserrat;
+  font-weight: bold;
+  margin: 35px 20rem;
+  font-size: 26px;
+}
+
+.single-input input,
+.two-inputs input,
+.garage,
+.text-area {
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  margin: 10px 0;
+  color: #4a4b4c;
+}
+label {
+  font-size: 14px;
+}
+input::placeholder,
+.garage {
+  font-family: Montserrat;
+  padding: 15px;
+  color: #c3c3c3;
+}
+.text-area {
+  height: 150px;
+  font-family: Montserrat;
+  padding: 15px;
+}
+.all-inputs {
+  width: 40vw;
+  margin-left: 20rem;
+}
+.single-input {
+  display: flex;
+  flex-direction: column;
+  font-family: Montserrat;
+  font-weight: bold;
+  color: #4a4b4c;
+  width: 60%;
+}
+.two-inputs-holder {
+  display: flex;
+  flex-direction: row;
+  font-family: Montserrat;
+  font-weight: bold;
+  color: #4a4b4c;
+  justify-content: space-between;
+  width: 24vw;
+}
+
+.two-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  justify-content: space-around;
+}
+
+.button-post {
+  width: 220px;
+  height: 50px;
+  text-transform: uppercase;
+  background-color: #eb5440;
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+  font-family: Montserrat;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 15rem;
+  margin-top: 20px;
+}
+input.dotted {
+  border: 0;
+  border-bottom: 1px dashed black;
+  width: 100px;
+  height: 100px;
 }

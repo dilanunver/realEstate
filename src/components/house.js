@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import SingleHouse from './SingleHouse'
+import CreatePost from './CreatePost'
 
 
 
@@ -26,12 +28,13 @@ const House = ({ houses, deletingItems }) => {
     setBySize(sortBySize)
   }
 
+
   return (
     <div className='house'>
 
       <div className='headerCreate'>
         <h1 className='header1'>Houses</h1>
-        <button className='create'>Create New</button>
+        <Link className='create' to="/createPost" >Create New</Link>
       </div>
       <div className='input-sorting'>
         <input type='text' className='input' placeholder='Search for a house' />
@@ -40,8 +43,9 @@ const House = ({ houses, deletingItems }) => {
           <button onClick={() => buttonSizeHandler()} className={bySizeActive ? 'by-size active' : 'by-size'}>Size</button>
         </div>
       </div>
-      {houses.map((house) =>
-        <SingleHouse house={house} deletingItems={deletingItems} ></SingleHouse>)
+      {
+        houses.map((house) =>
+          <SingleHouse house={house} deletingItems={deletingItems} ></SingleHouse>)
       }
 
     </div >

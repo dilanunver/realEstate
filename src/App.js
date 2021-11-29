@@ -5,6 +5,7 @@ import About from './components/About';
 import House from './components/House';
 import { Loading } from './components/Loading';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import CreatePost from './components/CreatePost';
 
 
 
@@ -71,6 +72,7 @@ function App() {
         <Routes>
           <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
+          <Route path="/createPost" element={<CreatePost></CreatePost>} />
         </Routes>
       </div>
     </Router>
