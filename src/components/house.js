@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SingleHouse from './SingleHouse'
-import CreatePost from './CreatePost'
+
 
 
 
@@ -34,7 +34,7 @@ const House = ({ houses, deletingItems }) => {
 
       <div className='headerCreate'>
         <h1 className='header1'>Houses</h1>
-        <Link className='create' to="/createPost" >Create New</Link>
+        <Link className='create' to="createPost" >Create New</Link>
       </div>
       <div className='input-sorting'>
         <input type='text' className='input' placeholder='Search for a house' />

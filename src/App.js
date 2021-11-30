@@ -72,7 +72,7 @@ function App() {
         <Routes>
           <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
-          <Route path="/createPost" element={<CreatePost></CreatePost>} />
+          <Route path="/house/createPost" element={<CreatePost houses={houses}></CreatePost>} />
         </Routes>
       </div>
     </Router>

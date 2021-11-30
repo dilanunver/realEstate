@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+.navbar {
+  overflow: hidden;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 120px;
+}
+
 nav {
   display: flex;
   justify-content: flex-start;
@@ -201,6 +210,7 @@ nav {
   padding-top: 35px;
   width: 100%;
 }
+
 .back {
   background: url(../src/pictures/ic_back_grey.png);
   background-repeat: no-repeat;
@@ -232,15 +242,14 @@ label {
   font-size: 14px;
 }
 input::placeholder,
-.garage {
+.garage,
+.text-area::placeholder {
   font-family: Montserrat;
   padding: 15px;
   color: #c3c3c3;
 }
 .text-area {
   height: 150px;
-  font-family: Montserrat;
-  padding: 15px;
 }
 .all-inputs {
   width: 40vw;
@@ -287,8 +296,11 @@ input::placeholder,
   margin-top: 20px;
 }
 input.dotted {
-  border: 0;
-  border-bottom: 1px dashed black;
+  border: 1px dashed black;
   width: 100px;
   height: 100px;
+  background-image: url(../src/pictures/ic_plus_grey.png);
+  background-repeat: no-repeat;
+  background-position: 40px;
+  cursor: pointer;
 }
