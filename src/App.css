@@ -304,16 +304,15 @@ input::placeholder {
   margin-left: 15rem;
   margin-top: 20px;
 }
-img.dotted {
+.dotted {
   cursor: pointer;
   display: flex;
   border: 1px dotted #000000;
   padding: 50px;
-  filter: invert(100%);
-  width: 10px;
-  height: 10px;
-  -webkit-filter: invert(80%);
+  border-radius: 5px;
   margin: 10px 0;
+  width: 100px;
+  height: 100px;
 }
 
 input[type="text"] {
@@ -324,4 +323,9 @@ input[type="text"] {
 }
 .single-input > input[type="file"] {
   display: none;
+}
+.remove {
+  position: absolute;
+  bottom: 24.8%;
+  left: 20.8%;
 }

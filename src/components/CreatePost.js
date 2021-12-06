@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import plus from '../pictures/plus.png'
-
+import remove from '../pictures/remove.png'
 
 
 const CreatePost = () => {
@@ -19,11 +19,31 @@ const CreatePost = () => {
   const [constructionDate, setConstructionDate] = useState(1995)
   const [description, setDescription] = useState('test')
   const [image, setImage] = useState('')
+  const [prevImage, setPrevImage] = useState(null)
+  const [error, setError] = useState(false)
+
 
 
   const uploadingImage = async (e) => {
-    console.log(e.target.files)
-    setImage(e.target.files[0])
+    const selected = e.target.files[0]
+    const allowedTypes = ["image/png", "image/jpg", "image/jpeg"]
+
+    if (selected === undefined) {
+      console.log('bos')
+      return
+    }
+    if (selected && allowedTypes.includes(selected.type)) {
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        setPrevImage(reader.result)
+      };
+      reader.readAsDataURL(selected)
+      console.log('selected')
+    }
+    else {
+      setError(true)
+    }
+
   }
 
 
@@ -105,9 +125,13 @@ const CreatePost = () => {
         </div>
         <div className='single-input'>
           <label for='file-image'>Upload picture (PNG or JPG)*
-            <img src={plus} className='dotted' alt='plus' accept='.jpg, .png' ></img>
+            <div style={{ background: prevImage ? `url("${prevImage}") no-repeat center/cover` : `url("${plus}") no-repeat center` }} className='dotted' ></div>
+            {prevImage && <img src={remove} alt='remove' className='remove'></img>}
           </label>
           <input type='file' alt='image' onChange={uploadingImage} id='file-image' ></input>
+          <div className='error'>
+            {error && <p>File not supported</p>}
+          </div>
         </div>
         <div className='single-input'>
           <label>Price*</label>
