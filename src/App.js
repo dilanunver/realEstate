@@ -46,16 +46,12 @@ function App() {
     headerFetch()
   }, [])
 
-
   const deletingItems = async (selectedHouse) => {
-
     const url = `https://intern-api.docker-dev.d-tt.nl/api/houses/${selectedHouse.id}`
     const response = await fetch(url, deleteOptions)
     const result = await response.json();
     console.log(result)
   }
-
-
 
   if (loading) {
     return (

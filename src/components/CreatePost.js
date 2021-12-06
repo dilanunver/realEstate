@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import plus from '../pictures/plus.png'
 
 
 
@@ -20,13 +21,14 @@ const CreatePost = () => {
   const [image, setImage] = useState('')
 
 
-
   const uploadingImage = async (e) => {
     console.log(e.target.files)
     setImage(e.target.files[0])
   }
 
+
   const post = () => {
+
     var myHeaders = new Headers();
     myHeaders.append("X-Api-Key", "jSW54MUV9fmlHLsg_XdCT3xq6DAvaJch");
 
@@ -80,7 +82,8 @@ const CreatePost = () => {
       <div className='all-inputs'>
         <div className='single-input'>
           <label>Street name*</label>
-          <input value={street} type='text' placeholder='Enter the street name' onChange={(e) => setStreet(e.target.value)}></input>
+          <input value={street} required type='text' placeholder='Enter the street name' onChange={(e) => setStreet(e.target.value)}></input>
+
         </div>
         <div className='two-inputs-holder'>
           <div className='two-inputs'>
@@ -101,8 +104,10 @@ const CreatePost = () => {
           <input value={city} type='text' placeholder='e.g. Utrecht' onChange={(e) => setCity(e.target.value)}></input>
         </div>
         <div className='single-input'>
-          <label>Upload picture (PNG or JPG)*</label>
-          <input type='file' alt='image' className='dotted' onChange={uploadingImage} ></input>
+          <label for='file-image'>Upload picture (PNG or JPG)*
+            <img src={plus} className='dotted' alt='plus' accept='.jpg, .png' ></img>
+          </label>
+          <input type='file' alt='image' onChange={uploadingImage} id='file-image' ></input>
         </div>
         <div className='single-input'>
           <label>Price*</label>

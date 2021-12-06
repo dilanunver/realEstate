@@ -19,7 +19,7 @@ const House = ({ houses, deletingItems }) => {
     setBySizeActive(false)
     let sortByPrice = houses.sort(function (a, b) { return a.price - b.price });
     setByPrice(sortByPrice)
-    console.log(byPrice)
+
   }
   const buttonSizeHandler = () => {
     setBySizeActive(true)
