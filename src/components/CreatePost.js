@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import plus from '../pictures/plus.png'
 import remove from '../pictures/remove.png'
@@ -6,7 +6,7 @@ import remove from '../pictures/remove.png'
 
 const CreatePost = () => {
 
-  const [street, setStreet] = useState('test')
+  const [street, setStreet] = useState('')
   const [houseNum, setHouseNum] = useState(23)
   const [addition, setAddition] = useState('')
   const [postalCode, setPostalCode] = useState(3222)
@@ -21,26 +21,26 @@ const CreatePost = () => {
   const [image, setImage] = useState('')
   const [prevImage, setPrevImage] = useState(null)
   const [error, setError] = useState(false)
-
+  const inputRef = useRef();
 
 
   const uploadingImage = async (e) => {
+    setError(false)
     const selected = e.target.files[0]
     const allowedTypes = ["image/png", "image/jpg", "image/jpeg"]
-
     if (selected === undefined) {
       console.log('bos')
       return
     }
     if (selected && allowedTypes.includes(selected.type)) {
       let reader = new FileReader();
+      console.log(reader)
       reader.onloadend = () => {
         setPrevImage(reader.result)
       };
       reader.readAsDataURL(selected)
       console.log('selected')
-    }
-    else {
+    } else {
       setError(true)
     }
 
@@ -93,6 +93,8 @@ const CreatePost = () => {
       })
       .catch(error => console.log('error', error));
 
+
+
   }
 
   return (
@@ -103,6 +105,7 @@ const CreatePost = () => {
         <div className='single-input'>
           <label>Street name*</label>
           <input value={street} required type='text' placeholder='Enter the street name' onChange={(e) => setStreet(e.target.value)}></input>
+          {street === '' ? <div>need to write street</div> : ''}
 
         </div>
         <div className='two-inputs-holder'>
@@ -124,11 +127,13 @@ const CreatePost = () => {
           <input value={city} type='text' placeholder='e.g. Utrecht' onChange={(e) => setCity(e.target.value)}></input>
         </div>
         <div className='single-input'>
-          <label for='file-image'>Upload picture (PNG or JPG)*
+          Upload picture (PNG or JPG)*
+          <label htmlFor='file-image'>
             <div style={{ background: prevImage ? `url("${prevImage}") no-repeat center/cover` : `url("${plus}") no-repeat center` }} className='dotted' ></div>
-            {prevImage && <img src={remove} alt='remove' className='remove'></img>}
           </label>
-          <input type='file' alt='image' onChange={uploadingImage} id='file-image' ></input>
+          <input type='file' ref={inputRef} alt='image' onChange={uploadingImage} id='file-image' ></input>
+          {prevImage && (
+            <img src={remove} alt='remove' onClick={() => { inputRef.current.value = ''; setPrevImage(null) }} className='remove'></img>)}
           <div className='error'>
             {error && <p>File not supported</p>}
           </div>

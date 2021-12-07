@@ -240,6 +240,7 @@ h2 {
 }
 label {
   font-size: 14px;
+  width: 100px;
 }
 input::placeholder {
   font-family: Montserrat;
@@ -271,6 +272,7 @@ input::placeholder {
   font-weight: bold;
   color: #4a4b4c;
   width: 60%;
+  font-size: 14px;
 }
 .two-inputs-holder {
   display: flex;
@@ -311,7 +313,7 @@ input::placeholder {
   padding: 50px;
   border-radius: 5px;
   margin: 10px 0;
-  width: 100px;
+  max-width: 100px;
   height: 100px;
 }
 
@@ -328,4 +330,5 @@ input[type="text"] {
   position: absolute;
   bottom: 24.8%;
   left: 20.8%;
+  cursor: pointer;
 }
