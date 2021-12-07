@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import plus from '../pictures/plus.png'
 import remove from '../pictures/remove.png'
+import SingleInput from "./SingleInput";
 
 
 const CreatePost = () => {
@@ -22,6 +23,7 @@ const CreatePost = () => {
   const [prevImage, setPrevImage] = useState(null)
   const [error, setError] = useState(false)
   const inputRef = useRef();
+  const [isPosted, setIsPosted] = useState(false)
 
 
   const uploadingImage = async (e) => {
@@ -48,7 +50,7 @@ const CreatePost = () => {
 
 
   const post = () => {
-
+    setIsPosted(true);
     var myHeaders = new Headers();
     myHeaders.append("X-Api-Key", "jSW54MUV9fmlHLsg_XdCT3xq6DAvaJch");
 
@@ -94,7 +96,6 @@ const CreatePost = () => {
       .catch(error => console.log('error', error));
 
 
-
   }
 
   return (
@@ -102,12 +103,7 @@ const CreatePost = () => {
       <Link className='back' to='/house'>Back to overview</Link>
       <h2>Create new listing</h2>
       <div className='all-inputs'>
-        <div className='single-input'>
-          <label>Street name*</label>
-          <input value={street} required type='text' placeholder='Enter the street name' onChange={(e) => setStreet(e.target.value)}></input>
-          {street === '' ? <div>need to write street</div> : ''}
-
-        </div>
+        <SingleInput value={street} isPosted={isPosted} required label={'Street name*'} placeholder={'Enter the street name'} onChange={(e) => setStreet(e.target.value)}></SingleInput>
         <div className='two-inputs-holder'>
           <div className='two-inputs'>
             <label>House number*</label>
@@ -118,14 +114,9 @@ const CreatePost = () => {
             <input value={addition} type='text' placeholder='e.g. A' onChange={(e) => setAddition(e.target.value)}></input>
           </div>
         </div>
-        <div className='single-input'>
-          <label>Postal code*</label>
-          <input value={postalCode} type='text' placeholder='e.g. 1000 AA' onChange={(e) => setPostalCode(e.target.value)}></input>
-        </div>
-        <div className='single-input'>
-          <label>City*</label>
-          <input value={city} type='text' placeholder='e.g. Utrecht' onChange={(e) => setCity(e.target.value)}></input>
-        </div>
+        <SingleInput value={postalCode} isPosted={isPosted} required label={'Postal code*'} placeholder={'e.g. 1000 AA'} onChange={(e) => setPostalCode(e.target.value)}></SingleInput>
+        <SingleInput value={city} isPosted={isPosted} required label={'City*'} placeholder={'e.g. Utrecht'} onChange={(e) => setCity(e.target.value)}></SingleInput>
+
         <div className='single-input'>
           Upload picture (PNG or JPG)*
           <label htmlFor='file-image'>
@@ -138,10 +129,8 @@ const CreatePost = () => {
             {error && <p>File not supported</p>}
           </div>
         </div>
-        <div className='single-input'>
-          <label>Price*</label>
-          <input value={price} type='text' placeholder='e.g. €150.000' onChange={(e) => setPrice(e.target.value)}></input>
-        </div>
+        <SingleInput value={price} isPosted={isPosted} required label={'Price*'} placeholder={'e.g. €150.000'} onChange={(e) => setPrice(e.target.value)}></SingleInput>
+
         <div className='two-inputs-holder'>
           <div className='two-inputs'>
             <label>Size*</label>
@@ -166,14 +155,9 @@ const CreatePost = () => {
             <input value={bathroom} type='text' placeholder='Enter amount' onChange={(e) => setBathroom(e.target.value)}></input>
           </div>
         </div>
-        <div className='single-input'>
-          <label>Construction date*</label>
-          <input value={constructionDate} type='text' placeholder='e.g. 1990' onChange={(e) => setConstructionDate(e.target.value)}></input>
-        </div>
-        <div className='single-input'>
-          <label>Description*</label>
-          <textarea value={description} className='text-area' placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}></textarea>
-        </div>
+        <SingleInput value={constructionDate} isPosted={isPosted} required label={'Construction date*'} placeholder={'e.g. 1990'} onChange={(e) => setConstructionDate(e.target.value)}></SingleInput>
+        <SingleInput value={description} isPosted={isPosted} required label={'Description*'} placeholder={'Enter description'} onChange={(e) => setDescription(e.target.value)}></SingleInput>
+        <SingleInput value={constructionDate} isPosted={isPosted} required label={'Construction date*'} placeholder={'e.g. 1990'} onChange={(e) => setConstructionDate(e.target.value)}></SingleInput>
         <div className='single-input'>
           <button className='button-post' onClick={post}>Post</button>
         </div>

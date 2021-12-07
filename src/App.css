@@ -320,7 +320,6 @@ input::placeholder {
 input[type="text"] {
   font-family: Montserrat;
   font-size: 14px;
-  padding-left: 15px;
   color: #4a4b4c;
 }
 .single-input > input[type="file"] {
