@@ -1,8 +1,8 @@
 import React from "react";
 
-const SingleInput = ({ value, onChange, className = 'single-input', label, placeholder, required, isPosted }) => {
+const SingleInput = ({ value, onChange, className = 'single-input', label, placeholder, required }) => {
 
-  const isEmptyValue = required && isPosted && value === ''
+  const isEmptyValue = required && value === ''
 
   return (
 

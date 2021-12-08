@@ -237,6 +237,9 @@ h2 {
   border: none;
   margin: 10px 0;
   color: #4a4b4c;
+  padding-left: 15px;
+  font-family: Montserrat;
+  font-size: 14px;
 }
 .single-input input.empty,
 .two-inputs input.empty {
@@ -250,8 +253,10 @@ label {
 }
 input::placeholder {
   font-family: Montserrat;
-  padding: 15px;
   color: #c3c3c3;
+}
+input:focus {
+  outline: none;
 }
 .garage {
   font-family: Montserrat;
