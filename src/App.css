@@ -48,7 +48,7 @@ nav {
   min-height: 100%;
 }
 .create {
-  background: url(../src/pictures/plus.png) no-repeat;
+  background: url(../src/pictures/ic_plus_white.png) no-repeat;
   background-position: bottom 13px left 15px;
   display: flex;
   padding: 10px 46px;
@@ -238,9 +238,15 @@ h2 {
   margin: 10px 0;
   color: #4a4b4c;
 }
+.single-input input.empty,
+.two-inputs input.empty {
+  border: 1px solid #eb5440;
+}
+
 label {
   font-size: 14px;
   width: 100px;
+  margin-top: 10px;
 }
 input::placeholder {
   font-family: Montserrat;
@@ -259,6 +265,9 @@ input::placeholder {
   color: #4a4b4c;
   padding-left: 15px;
   padding-top: 15px;
+}
+.empty {
+  border: 1px solid #eb5440;
 }
 
 .all-inputs {
@@ -281,6 +290,7 @@ input::placeholder {
   font-weight: bold;
   color: #4a4b4c;
   justify-content: space-between;
+  align-items: flex-start;
   width: 24vw;
 }
 
@@ -330,4 +340,13 @@ input[type="text"] {
   bottom: 24.8%;
   left: 20.8%;
   cursor: pointer;
+}
+
+.error-message {
+  font-family: Monserrat;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 14px;
+  color: #eb5440;
+  padding: 5px;
 }

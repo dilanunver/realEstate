@@ -2,12 +2,17 @@ import React from "react";
 
 const SingleInput = ({ value, onChange, className = 'single-input', label, placeholder, required, isPosted }) => {
 
+  const isEmptyValue = required && isPosted && value === ''
+
   return (
+
     <div className={className}>
       <label>{label}</label>
-      <input value={value} type='text' placeholder={placeholder} onChange={onChange}></input>
-      {required && isPosted && value === '' && <p style={{ color: 'red' }}>this field is required</p>}
+      <input value={value} placeholder={placeholder} className={` ${isEmptyValue && 'empty'}`} onChange={onChange}></input>
+      {isEmptyValue && <div className='error-message'>Required field missing</div>}
     </div>
+
+
   )
 }
 
