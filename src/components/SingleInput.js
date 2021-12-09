@@ -5,12 +5,12 @@ const SingleInput = ({ value, onChange, className = 'single-input', label, place
 
   const handleOnChange = (e) => {
     setShowErrorMessage(true)
-    console.log('çağrıldı')
+
     onChange(e)
   }
 
   const isEmptyValue = required && value === '' && showErrorMessage
-  console.log(isEmptyValue)
+
 
   return (
 

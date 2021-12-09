@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import plus from '../pictures/plus.png'
 import remove from '../pictures/remove.png'
@@ -25,9 +25,18 @@ const CreatePost = () => {
   const [error, setError] = useState(false)
   const inputRef = useRef();
   const [isPosted, setIsPosted] = useState(false)
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
+  const [disable, setDisable] = useState(true)
 
+
+
+  const handlePicture = (e) => {
+    uploadingImage(e)
+    setPrevImage(e.target.value)
+  }
 
   const uploadingImage = async (e) => {
+
     setError(false)
     const selected = e.target.files[0]
     const allowedTypes = ["image/png", "image/jpg", "image/jpeg"]
@@ -40,14 +49,16 @@ const CreatePost = () => {
       console.log(reader)
       reader.onloadend = () => {
         setPrevImage(reader.result)
+        console.log(reader.result)
       };
       reader.readAsDataURL(selected)
-      console.log('selected')
+
     } else {
       setError(true)
     }
 
   }
+
 
 
   const post = () => {
@@ -76,6 +87,7 @@ const CreatePost = () => {
       redirect: 'follow'
     };
 
+
     fetch("https://intern-api.docker-dev.d-tt.nl/api/houses", requestOptions)
       .then(response => response.json())
       .then(gettingData => {
@@ -95,9 +107,12 @@ const CreatePost = () => {
           .catch(error => console.log('error', error));
       })
       .catch(error => console.log('error', error));
-
-
   }
+  useEffect(() => {
+    setDisable(showErrorMessage)
+  }, [showErrorMessage])
+
+  const isButtonDisabled = street === '' || houseNum === '' || postalCode === '' || city === '' || price === '' || size === '' || garage === '' || bedroom === '' || bathroom === '' || constructionDate === '' || description === '' || !prevImage
 
   return (
     <div className='create-post'>
@@ -116,8 +131,8 @@ const CreatePost = () => {
           <label htmlFor='file-image'>
             <div style={{ background: prevImage ? `url("${prevImage}") no-repeat center/cover` : `url("${plus}") no-repeat center` }} className='dotted' ></div>
           </label>
-          <input type='file' required ref={inputRef} alt='image' onChange={uploadingImage} id='file-image' ></input>
-          {image === '' ? <p className='error-message'>Required field missing</p> : ''}
+          <input type='file' required ref={inputRef} alt='image' onChange={handlePicture} id='file-image' ></input>
+          {!prevImage && showErrorMessage ? <p className='error-message'>Required field missing</p> : ''}
           {prevImage && (
             <img src={remove} alt='remove' onClick={() => { inputRef.current.value = ''; setPrevImage(null) }} className='remove'></img>)}
           <div className='error'>
@@ -145,12 +160,12 @@ const CreatePost = () => {
         <Description value={description} required label={'Description'} placeholder={'Enter description'} onChange={(e) => setDescription(e.target.value)}></Description>
 
         <div className='single-input'>
-          <button className='button-post' onClick={post}>Post</button>
+          <button className='button-post' disabled={isButtonDisabled} onClick={post}>Post</button>
         </div>
 
       </div>
 
-    </div>
+    </div >
 
   )
 

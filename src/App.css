@@ -321,6 +321,10 @@ input:focus {
   margin-left: 15rem;
   margin-top: 20px;
 }
+.button-post:disabled {
+  background-color: #eb544069;
+  cursor: initial;
+}
 .dotted {
   cursor: pointer;
   display: flex;
