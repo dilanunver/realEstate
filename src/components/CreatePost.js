@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import plus from '../pictures/plus.png'
 import remove from '../pictures/remove.png'
 import Description from "./Description";
+import HouseDetail from "./HouseDetail";
 import SingleInput from "./SingleInput";
 
 
@@ -108,9 +109,7 @@ const CreatePost = () => {
       })
       .catch(error => console.log('error', error));
   }
-  useEffect(() => {
-    setDisable(showErrorMessage)
-  }, [showErrorMessage])
+
 
   const isButtonDisabled = street === '' || houseNum === '' || postalCode === '' || city === '' || price === '' || size === '' || garage === '' || bedroom === '' || bathroom === '' || constructionDate === '' || description === '' || !prevImage
 
@@ -160,7 +159,8 @@ const CreatePost = () => {
         <Description value={description} required label={'Description'} placeholder={'Enter description'} onChange={(e) => setDescription(e.target.value)}></Description>
 
         <div className='single-input'>
-          <button className='button-post' disabled={isButtonDisabled} onClick={post}>Post</button>
+          <Link className='button-post' to='house-detail' disabled={isButtonDisabled} onClick={post}>Post</Link>
+
         </div>
 
       </div>

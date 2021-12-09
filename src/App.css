@@ -320,6 +320,10 @@ input:focus {
   cursor: pointer;
   margin-left: 15rem;
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 .button-post:disabled {
   background-color: #eb544069;
