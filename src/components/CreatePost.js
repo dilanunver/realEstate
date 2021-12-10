@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import plus from '../pictures/plus.png'
 import remove from '../pictures/remove.png'
 import Description from "./Description";
@@ -28,6 +28,7 @@ const CreatePost = () => {
   const [isPosted, setIsPosted] = useState(false)
   const [showErrorMessage, setShowErrorMessage] = useState(false)
   const [disable, setDisable] = useState(true)
+  const navigate = useNavigate()
 
 
 
@@ -108,6 +109,7 @@ const CreatePost = () => {
           .catch(error => console.log('error', error));
       })
       .catch(error => console.log('error', error));
+    navigate("/house/houseDetail", { replace: true })
   }
 
 
@@ -159,7 +161,7 @@ const CreatePost = () => {
         <Description value={description} required label={'Description'} placeholder={'Enter description'} onChange={(e) => setDescription(e.target.value)}></Description>
 
         <div className='single-input'>
-          <Link className='button-post' to='house-detail' disabled={isButtonDisabled} onClick={post}>Post</Link>
+          <button className='button-post' disabled={isButtonDisabled} onClick={post}>Post</button>
 
         </div>
 

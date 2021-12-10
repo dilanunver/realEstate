@@ -206,6 +206,7 @@ nav {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
+  background-color: #f6f6f6;
   height: 100%;
   padding-top: 35px;
   width: 100%;
@@ -362,4 +363,65 @@ input[type="text"] {
   font-size: 14px;
   color: #eb5440;
   padding: 5px;
+}
+.postted-house {
+  background-color: #f6f6f6;
+  padding-top: 50px;
+}
+
+.house-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 20em;
+  margin-top: 35px;
+}
+.bc-white {
+  background-color: #ffffff;
+}
+.postted-header {
+  margin: 25px 30px 15px;
+}
+.postted-city {
+  font-family: Open Sans Semibold;
+  margin: 15px 30px;
+  color: #4a4b4c;
+}
+
+.postted-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 30px;
+}
+.price-pc,
+.size-pc,
+.built-pc {
+  margin-right: 10px;
+}
+img.size-pc,
+img.built-pc {
+  margin-left: 30px;
+}
+.postted-insideHouse {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 30px;
+}
+img.bed-pc,
+img.bath-pc,
+img.garage-pc {
+  margin-top: 15px;
+  margin-right: 10px;
+}
+img.bath-pc,
+img.garage-pc {
+  margin-left: 30px;
+}
+.loremipsum {
+  font-family: Open Sans Regular;
 }
