@@ -381,7 +381,7 @@ input[type="text"] {
   background-color: #ffffff;
 }
 .postted-header {
-  margin: 25px 30px 15px;
+  margin: 25px 30px 1px;
 }
 .postted-city {
   font-family: Open Sans Semibold;
@@ -410,7 +410,7 @@ img.built-pc {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 30px;
+  margin: 15px 30px;
 }
 img.bed-pc,
 img.bath-pc,
@@ -424,4 +424,29 @@ img.garage-pc {
 }
 .loremipsum {
   font-family: Open Sans Regular;
+  font-size: 16px;
+}
+.loremipsum p {
+  width: 0;
+  min-width: 100%;
+  padding: 15px 30px;
+  line-height: 1.8;
+  color: #4a4b4c;
+}
+span {
+  padding-top: 10px;
+}
+.hovering-items {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.holding-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
+}
+.editObj {
+  padding-right: 25px;
 }
