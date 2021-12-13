@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import housepic from '../pictures/housepic.png'
 import location from '../pictures/location.png'
@@ -16,7 +16,9 @@ import editObj from '../pictures/edit.png'
 const HouseDetail = () => {
 
   const [isHovering, setIsHovering] = useState(false)
-
+  const LoremComp = useMemo(() => (
+    <LoremIpsum p={1} />
+  ), [])
 
   return (
     <div className='postted-house'>
@@ -54,7 +56,7 @@ const HouseDetail = () => {
             <img className="garage-pc" src={garagePc} alt="garage-pc"></img><span>Yes</span>
           </div>
           <div className="loremipsum">
-            <LoremIpsum p={1} />
+            {LoremComp}
           </div>
         </div>
       </div>
