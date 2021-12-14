@@ -246,6 +246,10 @@ h2 {
 .two-inputs input.empty {
   border: 1px solid #eb5440;
 }
+.single-input input.empty::placeholder,
+.two-inputs input.empty::placeholder {
+  color: #eb5440;
+}
 
 label {
   font-size: 14px;
@@ -256,6 +260,7 @@ input::placeholder {
   font-family: Montserrat;
   color: #c3c3c3;
 }
+
 input:focus {
   outline: none;
 }
@@ -272,8 +277,12 @@ input:focus {
   padding-left: 15px;
   padding-top: 15px;
 }
+
 .empty {
   border: 1px solid #eb5440;
+}
+.text-area.empty::placeholder {
+  color: #eb5440;
 }
 
 .all-inputs {
@@ -450,6 +459,10 @@ span {
 }
 .editObj {
   padding-right: 25px;
+  cursor: pointer;
+}
+.deleteObj {
+  cursor: pointer;
 }
 .about-page {
   background-color: #f6f6f6;
@@ -478,11 +491,46 @@ span {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+
   padding-left: 30px;
 }
 .img-link {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+.modal h1 {
+  font-family: Montserrat;
+  font-weight: bold;
+  text-align: center;
+  font-size: 22px;
+  padding-top: 20px;
+}
+.modal p {
+  font-family: Open Sans Regular;
+  padding: 20px;
+  text-align: center;
+  color: #4a4b4c;
+}
+.modal-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.yes,
+.no {
+  width: 300px;
+  height: 35px;
+  margin-bottom: 15px;
+  border-radius: 7px;
+  border: none;
+  color: #ffffff;
+  background-color: #eb5440;
+  font-family: Montserrat;
+  font-weight: bold;
+  cursor: pointer;
+}
+.no {
+  background-color: #4a4b4c;
 }

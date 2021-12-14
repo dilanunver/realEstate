@@ -11,14 +11,32 @@ import garagePc from '../pictures/ic_garage.png'
 import { LoremIpsum } from 'react-lorem-ipsum';
 import deleteObj from '../pictures/delete.png'
 import editObj from '../pictures/edit.png'
+import Modal from 'react-modal'
 
 
 const HouseDetail = () => {
 
   const [isHovering, setIsHovering] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const LoremComp = useMemo(() => (
     <LoremIpsum p={1} />
   ), [])
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: '510px',
+      height: '300px',
+      borderRadius: '15px'
+    }
+
+
+  }
 
   return (
     <div className='postted-house'>
@@ -36,9 +54,23 @@ const HouseDetail = () => {
             {isHovering &&
               <span className="hovering-items">
                 <img className="editObj" src={editObj} alt="editObj" />
-                <img src={deleteObj} alt="editObj" />
+                <img className="deleteObj" src={deleteObj} alt="deleteObj" onClick={() => setIsModalOpen(true)} />
               </span>
             }
+            <Modal
+              isOpen={isModalOpen}
+              style={customStyles}
+            >
+              <div className="modal">
+                <h1>Delete listing</h1>
+                <p>Are you sure want to delete this listing? <br />
+                  This action cannot be undone.</p>
+                <div className="modal-button">
+                  <button className="yes">YES, DELETE</button>
+                  <button onClick={() => setIsModalOpen(false)} className="no">GO BACK</button>
+                </div>
+              </div>
+            </Modal>
           </div>
           <div className='postted-city'>
 

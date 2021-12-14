@@ -5,7 +5,9 @@ const About = () => {
   return (
     <div className='about-page'>
       <h1>About DTT Real Estate</h1>
-      <p className='about-lorem'>  <LoremIpsum p={1}></LoremIpsum></p>
+      <p className='about-lorem'>  <LoremIpsum p={1} avgSentencesPerParagraph={6}></LoremIpsum>
+        <LoremIpsum p={1} avgSentencesPerParagraph={2}></LoremIpsum>
+      </p>
       <h1 className='design'>Desing and Development</h1>
       <div className='img-link'>
         <img className='logo-about' src={logo} alt='logo' />
