@@ -12,6 +12,7 @@ import { LoremIpsum } from 'react-lorem-ipsum';
 import deleteObj from '../pictures/delete.png'
 import editObj from '../pictures/edit.png'
 import Modal from 'react-modal'
+import Recommended from "./Recommended";
 
 
 const HouseDetail = () => {
@@ -34,65 +35,72 @@ const HouseDetail = () => {
       height: '300px',
       borderRadius: '15px'
     }
-
-
   }
 
   return (
-    <div className='postted-house'>
-      <Link className='back' to='/house'>Back to overview</Link>
-      <div className="house-detail">
-        <div className="bc-white"
+    <div className="flex">
+      <div className='postted-house'>
+        <Link className='back' to='/house'>Back to overview</Link>
+        <div className="house-detail">
+          <div className="bc-white"
 
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
-          <img src={housepic} className='postted' alt='postted'></img>
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
+            <img src={housepic} className='postted' alt='postted'></img>
 
-          <div className="holding-items">
-            <h2 className="postted-header">Stokvisstraat 132</h2>
-            {isHovering &&
-              <span className="hovering-items">
-                <img className="editObj" src={editObj} alt="editObj" />
-                <img className="deleteObj" src={deleteObj} alt="deleteObj" onClick={() => setIsModalOpen(true)} />
-              </span>
-            }
-            <Modal
-              isOpen={isModalOpen}
-              style={customStyles}
-            >
-              <div className="modal">
-                <h1>Delete listing</h1>
-                <p>Are you sure want to delete this listing? <br />
-                  This action cannot be undone.</p>
-                <div className="modal-button">
-                  <button className="yes">YES, DELETE</button>
-                  <button onClick={() => setIsModalOpen(false)} className="no">GO BACK</button>
+            <div className="holding-items">
+              <h2 className="postted-header">Stokvisstraat 132</h2>
+              {isHovering &&
+                <span className="hovering-items">
+                  <img className="editObj" src={editObj} alt="editObj" />
+                  <img className="deleteObj" src={deleteObj} alt="deleteObj" onClick={() => setIsModalOpen(true)} />
+                </span>
+              }
+              <Modal
+                isOpen={isModalOpen}
+                style={customStyles}
+              >
+                <div className="modal">
+                  <h1>Delete listing</h1>
+                  <p>Are you sure want to delete this listing? <br />
+                    This action cannot be undone.</p>
+                  <div className="modal-button">
+                    <button className="yes">YES, DELETE</button>
+                    <button onClick={() => setIsModalOpen(false)} className="no">GO BACK</button>
+                  </div>
                 </div>
-              </div>
-            </Modal>
-          </div>
-          <div className='postted-city'>
-
-            <img className="location" src={location} alt="location"></img> 1011 AA Amsterdam
-          </div>
-          <div className='postted-price'>
-            <img className="price-pc" src={pricePc} alt="price"></img> 500.000
-            <img className="size-pc" src={sizePc} alt="size"></img><div className='size-pc'>120 m2</div>
-            <img className="built-pc" src={builtPc} alt="built"></img> Built in 1990
-          </div>
-
-          <div className='postted-insideHouse'>
-            <img className="bed-pc" src={bedPc} alt="bed-pc"></img><span>1</span>
-            <img className="bath-pc" src={bathPc} alt="bath-pc"></img><span>1</span>
-            <img className="garage-pc" src={garagePc} alt="garage-pc"></img><span>Yes</span>
-          </div>
-          <div className="loremipsum">
-            {LoremComp}
+              </Modal>
+            </div>
+            <div className='postted-city'>
+              <img className="location" src={location} alt="location"></img> 1011 AA Amsterdam
+            </div>
+            <div className='postted-price'>
+              <img className="price-pc" src={pricePc} alt="price"></img> 500.000
+              <img className="size-pc" src={sizePc} alt="size"></img><div className='size-pc'>120 m2</div>
+              <img className="built-pc" src={builtPc} alt="built"></img> Built in 1990
+            </div>
+            <div className='postted-insideHouse'>
+              <img className="bed-pc" src={bedPc} alt="bed-pc"></img><span className="inside-house">1</span>
+              <img className="bath-pc" src={bathPc} alt="bath-pc"></img><span className="inside-house">1</span>
+              <img className="garage-pc" src={garagePc} alt="garage-pc"></img><span className="inside-house">Yes</span>
+            </div>
+            <div className="loremipsum">
+              {LoremComp}
+            </div>
           </div>
         </div>
+
+      </div>
+      <div className="recommended">
+        <h2> Recommended for you</h2>
+
+        <Recommended></Recommended>
+        <Recommended></Recommended>
+        <Recommended></Recommended>
       </div>
     </div>
+
   )
 
 }

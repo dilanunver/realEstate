@@ -38,10 +38,10 @@ function App() {
   useEffect(() => {
     const headerFetch = async () => {
       setLoading(true)
-      /* const response = await fetch("https://intern-api.docker-dev.d-tt.nl/api/houses", requestOptions)
-       const result = await response.json();
-       let byPrice = result.sort(function (a, b) { return a.price - b.price })
-       setHouses(byPrice) */
+      const response = await fetch("https://intern-api.docker-dev.d-tt.nl/api/houses", requestOptions)
+      const result = await response.json();
+      let byPrice = result.sort(function (a, b) { return a.price - b.price })
+      setHouses(byPrice)
       setLoading(false)
     }
     headerFetch()
