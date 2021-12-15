@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import plus from '../pictures/plus.png'
 import remove from '../pictures/remove.png'
 import Description from "./Description";
-import HouseDetail from "./HouseDetail";
 import SingleInput from "./SingleInput";
 
 
-const CreatePost = () => {
+const CreatePost = ({ houses, headerFetch }) => {
 
   const [street, setStreet] = useState('')
   const [houseNum, setHouseNum] = useState(23)
@@ -27,14 +26,14 @@ const CreatePost = () => {
   const inputRef = useRef();
   const [isPosted, setIsPosted] = useState(false)
   const [showErrorMessage, setShowErrorMessage] = useState(false)
-  const [disable, setDisable] = useState(true)
+
   const navigate = useNavigate()
 
 
 
   const handlePicture = (e) => {
     uploadingImage(e)
-    setPrevImage(e.target.value)
+    setImage(e.target.files)
   }
 
   const uploadingImage = async (e) => {
@@ -48,10 +47,10 @@ const CreatePost = () => {
     }
     if (selected && allowedTypes.includes(selected.type)) {
       let reader = new FileReader();
-      console.log(reader)
+
       reader.onloadend = () => {
         setPrevImage(reader.result)
-        console.log(reader.result)
+
       };
       reader.readAsDataURL(selected)
 
@@ -60,13 +59,10 @@ const CreatePost = () => {
     }
 
   }
-
-
-
   const post = () => {
     setIsPosted(true);
     var myHeaders = new Headers();
-    myHeaders.append("X-Api-Key", "jSW54MUV9fmlHLsg_XdCT3xq6DAvaJch");
+    myHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
 
     var formdata = new FormData();
     formdata.append("price", price);
@@ -90,26 +86,24 @@ const CreatePost = () => {
     };
 
 
-    fetch("https://intern-api.docker-dev.d-tt.nl/api/houses", requestOptions)
+    fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
       .then(response => response.json())
       .then(gettingData => {
-        console.log(gettingData)
         var imageFormData = new FormData();
-        imageFormData.append("image", image, image.name);
+        imageFormData.append("image", image[0]);
+        console.log(image)
 
-        fetch(`https://intern-api.docker-dev.d-tt.nl/api/houses/${gettingData.id}/upload`, {
+        fetch(`https://api.intern.d-tt.nl/api/houses/${gettingData.id}/upload`, {
           method: 'POST',
           headers: myHeaders,
           body: imageFormData,
           redirect: 'follow'
-        }
-        )
-          .then(response => response.json())
-          .then(result => console.log(result))
+        })
+          .then(result => headerFetch())
+          .then(() => navigate("/house/houseDetail", { replace: true }))
           .catch(error => console.log('error', error));
       })
       .catch(error => console.log('error', error));
-    navigate("/house/houseDetail", { replace: true })
   }
 
 

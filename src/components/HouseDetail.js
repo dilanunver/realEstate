@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import housepic from '../pictures/housepic.png'
+
 import location from '../pictures/location.png'
 import pricePc from '../pictures/price.png'
 import sizePc from '../pictures/ic_size.png'
@@ -15,8 +15,9 @@ import Modal from 'react-modal'
 import Recommended from "./Recommended";
 
 
-const HouseDetail = () => {
-
+const HouseDetail = ({ houses }) => {
+  let posttedHouse = houses[houses.length - 1]
+  console.log(posttedHouse.size)
   const [isHovering, setIsHovering] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const LoremComp = useMemo(() => (
@@ -47,10 +48,10 @@ const HouseDetail = () => {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
-            <img src={housepic} className='postted' alt='postted'></img>
+            <img src={posttedHouse.image} className='postted' alt='postted'></img>
 
             <div className="holding-items">
-              <h2 className="postted-header">Stokvisstraat 132</h2>
+              <h2 className="postted-header">{posttedHouse.location.street}</h2>
               {isHovering &&
                 <span className="hovering-items">
                   <img className="editObj" src={editObj} alt="editObj" />
@@ -73,20 +74,22 @@ const HouseDetail = () => {
               </Modal>
             </div>
             <div className='postted-city'>
-              <img className="location" src={location} alt="location"></img> 1011 AA Amsterdam
+              <img className="location" src={location} alt="location"></img> {posttedHouse.location.zip} {posttedHouse.location.city}
             </div>
             <div className='postted-price'>
-              <img className="price-pc" src={pricePc} alt="price"></img> 500.000
-              <img className="size-pc" src={sizePc} alt="size"></img><div className='size-pc'>120 m2</div>
-              <img className="built-pc" src={builtPc} alt="built"></img> Built in 1990
+              <img className="price-pc" src={pricePc} alt="price"></img> {posttedHouse.price}
+              <img className="size-pc" src={sizePc} alt="size"></img><div className='size-pc'>{posttedHouse.size} m2</div>
+              <img className="built-pc" src={builtPc} alt="built"></img> Built in {posttedHouse.constructionYear}
             </div>
             <div className='postted-insideHouse'>
-              <img className="bed-pc" src={bedPc} alt="bed-pc"></img><span className="inside-house">1</span>
-              <img className="bath-pc" src={bathPc} alt="bath-pc"></img><span className="inside-house">1</span>
-              <img className="garage-pc" src={garagePc} alt="garage-pc"></img><span className="inside-house">Yes</span>
+              <img className="bed-pc" src={bedPc} alt="bed-pc"></img><span className="inside-house">{posttedHouse.rooms.bedrooms}</span>
+              <img className="bath-pc" src={bathPc} alt="bath-pc"></img><span className="inside-house">{posttedHouse.rooms.bathrooms}</span>
+              <img className="garage-pc" src={garagePc} alt="garage-pc"></img><span className="inside-house">
+                {posttedHouse.hasGarage ? 'Yes' : 'No'}
+              </span>
             </div>
             <div className="loremipsum">
-              {LoremComp}
+              {posttedHouse.description}
             </div>
           </div>
         </div>

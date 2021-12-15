@@ -380,6 +380,7 @@ input[type="text"] {
   display: flex;
   flex-direction: row;
   background-color: #f6f6f6;
+  padding-bottom: 50px;
 }
 .recommended {
   display: flex;
@@ -440,6 +441,10 @@ input[type="text"] {
   align-items: flex-start;
   margin-left: 20em;
   margin-top: 35px;
+}
+.postted {
+  width: 600px;
+  height: 400px;
 }
 .bc-white {
   background-color: #ffffff;
