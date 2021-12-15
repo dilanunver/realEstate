@@ -6,7 +6,7 @@ import Description from "./Description";
 import SingleInput from "./SingleInput";
 
 
-const CreatePost = ({ houses, headerFetch }) => {
+const CreatePost = ({ headerFetch }) => {
 
   const [street, setStreet] = useState('')
   const [houseNum, setHouseNum] = useState(23)
@@ -100,7 +100,7 @@ const CreatePost = ({ houses, headerFetch }) => {
           redirect: 'follow'
         })
           .then(result => headerFetch())
-          .then(() => navigate("/house/houseDetail", { replace: true }))
+          .then(() => navigate("/houseDetail", { replace: true }))
           .catch(error => console.log('error', error));
       })
       .catch(error => console.log('error', error));

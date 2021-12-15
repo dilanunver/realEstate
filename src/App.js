@@ -12,8 +12,9 @@ import HouseDetail from './components/HouseDetail';
 
 function App() {
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [houses, setHouses] = useState([])
+  const [detailForHouses, setDetailForHouses] = useState([])
   //get  
   const myHeaders = new Headers();
   myHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
@@ -34,16 +35,15 @@ function App() {
     redirect: 'follow'
   };
   const headerFetch = async () => {
-    setLoading(true)
     const response = await fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
     const result = await response.json();
+    setDetailForHouses(result[result.length - 1])
     let byPrice = result.sort(function (a, b) { return a.price - b.price })
     setHouses(byPrice)
-    setLoading(false)
+    setLoading(false);
   }
 
   useEffect(() => {
-
     headerFetch()
   }, [])
 
@@ -53,7 +53,8 @@ function App() {
     const result = await response.json();
     console.log(result)
   }
-
+  let shuffled = houses.sort(() => 0.5 - Math.random())
+  let recommendedShuffled = shuffled.slice(0, 3)
   if (loading) {
     return (
       <div>
@@ -62,15 +63,15 @@ function App() {
     )
   }
   return (
-
     <Router>
       <div className="App">
         <Nav />
         <Routes>
           <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
-          <Route exact path="/house/createPost" element={<CreatePost houses={houses} headerFetch={headerFetch}></CreatePost>} />
-          <Route path="/house/houseDetail" element={<HouseDetail houses={houses}></HouseDetail>} />
+          <Route path="/houseDetail" element={<HouseDetail detailForHouses={detailForHouses} recommendedShuffled={recommendedShuffled}></HouseDetail>} />
+
+          <Route path="/createPost" element={<CreatePost houses={houses} headerFetch={headerFetch}></CreatePost>} />
         </Routes>
       </div>
     </Router>

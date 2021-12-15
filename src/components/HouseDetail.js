@@ -15,9 +15,9 @@ import Modal from 'react-modal'
 import Recommended from "./Recommended";
 
 
-const HouseDetail = ({ houses }) => {
-  let posttedHouse = houses[houses.length - 1]
-  console.log(posttedHouse.size)
+const HouseDetail = ({ detailForHouses, recommendedShuffled }) => {
+
+
   const [isHovering, setIsHovering] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const LoremComp = useMemo(() => (
@@ -48,10 +48,10 @@ const HouseDetail = ({ houses }) => {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
-            <img src={posttedHouse.image} className='postted' alt='postted'></img>
+            <img src={detailForHouses.image} className='postted' alt='postted'></img>
 
             <div className="holding-items">
-              <h2 className="postted-header">{posttedHouse.location.street}</h2>
+              <h2 className="postted-header">{detailForHouses.location.street}</h2>
               {isHovering &&
                 <span className="hovering-items">
                   <img className="editObj" src={editObj} alt="editObj" />
@@ -74,22 +74,22 @@ const HouseDetail = ({ houses }) => {
               </Modal>
             </div>
             <div className='postted-city'>
-              <img className="location" src={location} alt="location"></img> {posttedHouse.location.zip} {posttedHouse.location.city}
+              <img className="location" src={location} alt="location"></img> {detailForHouses.location.zip} {detailForHouses.location.city}
             </div>
             <div className='postted-price'>
-              <img className="price-pc" src={pricePc} alt="price"></img> {posttedHouse.price}
-              <img className="size-pc" src={sizePc} alt="size"></img><div className='size-pc'>{posttedHouse.size} m2</div>
-              <img className="built-pc" src={builtPc} alt="built"></img> Built in {posttedHouse.constructionYear}
+              <img className="price-pc" src={pricePc} alt="price"></img> {detailForHouses.price}
+              <img className="size-pc" src={sizePc} alt="size"></img><div className='size-pc'>{detailForHouses.size} m2</div>
+              <img className="built-pc" src={builtPc} alt="built"></img> Built in {detailForHouses.constructionYear}
             </div>
             <div className='postted-insideHouse'>
-              <img className="bed-pc" src={bedPc} alt="bed-pc"></img><span className="inside-house">{posttedHouse.rooms.bedrooms}</span>
-              <img className="bath-pc" src={bathPc} alt="bath-pc"></img><span className="inside-house">{posttedHouse.rooms.bathrooms}</span>
+              <img className="bed-pc" src={bedPc} alt="bed-pc"></img><span className="inside-house">{detailForHouses.rooms.bedrooms}</span>
+              <img className="bath-pc" src={bathPc} alt="bath-pc"></img><span className="inside-house">{detailForHouses.rooms.bathrooms}</span>
               <img className="garage-pc" src={garagePc} alt="garage-pc"></img><span className="inside-house">
-                {posttedHouse.hasGarage ? 'Yes' : 'No'}
+                {detailForHouses.hasGarage ? 'Yes' : 'No'}
               </span>
             </div>
             <div className="loremipsum">
-              {posttedHouse.description}
+              {detailForHouses.description}
             </div>
           </div>
         </div>
@@ -97,10 +97,13 @@ const HouseDetail = ({ houses }) => {
       </div>
       <div className="recommended">
         <h2> Recommended for you</h2>
+        {recommendedShuffled.map(element => {
+          return (
+            <Recommended element={element}></Recommended>
 
-        <Recommended></Recommended>
-        <Recommended></Recommended>
-        <Recommended></Recommended>
+          )
+        })}
+
       </div>
     </div>
 
