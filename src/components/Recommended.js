@@ -1,5 +1,4 @@
 import React from "react";
-import housepic from '../pictures/housepic.png'
 import bedPc from '../pictures/ic_bed.png'
 import bathPc from '../pictures/ic_bath.png'
 import sizePc from '../pictures/ic_size.png'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SingleHouse from './SingleHouse'
 
@@ -12,6 +12,9 @@ const House = ({ houses, deletingItems }) => {
   const [bySize, setBySize] = useState(houses)
   const [byPriceActive, setByPriceActive] = useState(true)
   const [bySizeActive, setBySizeActive] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredHouse, setFilteredHouse] = useState([])
+  const [showResult, setShowResult] = useState(false)
 
 
   const buttonPriceHandler = () => {
@@ -28,6 +31,19 @@ const House = ({ houses, deletingItems }) => {
     setBySize(sortBySize)
   }
 
+  useEffect(() => {
+    setFilteredHouse(houses.filter((house) => {
+      if (searchTerm === '') {
+        return true
+      } else if (house.location.street.toLowerCase().includes(searchTerm.toLowerCase()) || (house.location.zip.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (house.location.city.toLowerCase().includes(searchTerm.toLowerCase())) || (house.price.toString().includes(searchTerm.toString()))) {
+        setShowResult(true)
+        return true
+      }
+
+      return false
+    }))
+  }, [searchTerm])
 
   return (
     <div className='house'>
@@ -37,15 +53,21 @@ const House = ({ houses, deletingItems }) => {
         <Link className='create' to="/createPost" >Create New</Link>
       </div>
       <div className='input-sorting'>
-        <input type='text' className='input' placeholder='Search for a house' />
+        <input type='text' className='input' placeholder='Search for a house' onChange={(e) => { setSearchTerm(e.target.value) }} />
         <div className='by'>
           <button onClick={() => buttonPriceHandler()} className={byPriceActive ? 'by-price active' : 'by-price'} >Price</button>
           <button onClick={() => buttonSizeHandler()} className={bySizeActive ? 'by-size active' : 'by-size'}>Size</button>
         </div>
       </div>
-      {
-        houses.map((house) =>
-          <SingleHouse house={house} deletingItems={deletingItems} ></SingleHouse>)
+      <div>
+        {showResult && `${filteredHouse.length} result found`}
+      </div>
+      {filteredHouse.map((house) => {
+        console.log(house)
+        return (
+          <SingleHouse house={house} deletingItems={deletingItems} ></SingleHouse>
+        )
+      })
       }
 
     </div >
