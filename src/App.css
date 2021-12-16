@@ -38,10 +38,32 @@ nav {
 .nav-link.active {
   color: #000000;
 }
-.header1 {
+.header1,
+.show-result {
   font-size: 32px;
   display: flex;
   justify-content: flex-start;
+}
+.show-result {
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 20px 10rem;
+}
+.filtered-houses {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5em;
+}
+.filtered-houses p {
+  font-family: Montserrat;
+
+  color: #4a4b4c;
+  font-size: 18px;
+  margin-top: 40px;
+  text-align: center;
 }
 .house {
   background-color: #f6f6f6;

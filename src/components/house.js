@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SingleHouse from './SingleHouse'
-
+import emptyHouse from '../pictures/emptyHouses.png'
 
 
 
@@ -31,9 +31,11 @@ const House = ({ houses, deletingItems }) => {
     setBySize(sortBySize)
   }
 
+
   useEffect(() => {
     setFilteredHouse(houses.filter((house) => {
       if (searchTerm === '') {
+        setShowResult(false)
         return true
       } else if (house.location.street.toLowerCase().includes(searchTerm.toLowerCase()) || (house.location.zip.toLowerCase().includes(searchTerm.toLowerCase())) ||
         (house.location.city.toLowerCase().includes(searchTerm.toLowerCase())) || (house.price.toString().includes(searchTerm.toString()))) {
@@ -44,6 +46,7 @@ const House = ({ houses, deletingItems }) => {
       return false
     }))
   }, [searchTerm])
+
 
   return (
     <div className='house'>
@@ -59,11 +62,20 @@ const House = ({ houses, deletingItems }) => {
           <button onClick={() => buttonSizeHandler()} className={bySizeActive ? 'by-size active' : 'by-size'}>Size</button>
         </div>
       </div>
-      <div>
-        {showResult && `${filteredHouse.length} result found`}
+      <div className='show-result'>
+        {showResult && filteredHouse.length > 0 && `${filteredHouse.length} results found`}
+
       </div>
+
+      {filteredHouse.length === 0 &&
+        <div className='filtered-houses'>
+          <img src={emptyHouse} alt='empty-house'></img>
+          <p>No results found. <br />
+            Please try another keyword.</p>
+        </div>
+      }
       {filteredHouse.map((house) => {
-        console.log(house)
+
         return (
           <SingleHouse house={house} deletingItems={deletingItems} ></SingleHouse>
         )
