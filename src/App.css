@@ -195,6 +195,12 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
+.input-clear {
+  position: absolute;
+  left: 35.5em;
+  width: 20px;
+  cursor: pointer;
+}
 .by {
   display: flex;
   margin-right: 160px;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SingleHouse from './SingleHouse'
 import emptyHouse from '../pictures/emptyHouses.png'
+import clear from '../pictures/clear.png'
 
 
 
@@ -15,7 +16,17 @@ const House = ({ houses, deletingItems }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredHouse, setFilteredHouse] = useState([])
   const [showResult, setShowResult] = useState(false)
+  const [isClear, setIsClear] = useState(false)
 
+
+
+
+  const handleInputValue = (e) => {
+    setSearchTerm(e.target.value)
+  }
+  const resetInputField = () => {
+    setSearchTerm("");
+  };
 
   const buttonPriceHandler = () => {
     setByPriceActive(true)
@@ -56,7 +67,10 @@ const House = ({ houses, deletingItems }) => {
         <Link className='create' to="/createPost" >Create New</Link>
       </div>
       <div className='input-sorting'>
-        <input type='text' className='input' placeholder='Search for a house' onChange={(e) => { setSearchTerm(e.target.value) }} />
+
+        <input type='text' className='input' value={searchTerm} placeholder='Search for a house' onChange={handleInputValue}
+        />
+        <img src={clear} alt='clear' className='input-clear' onClick={resetInputField}></img>
         <div className='by'>
           <button onClick={() => buttonPriceHandler()} className={byPriceActive ? 'by-price active' : 'by-price'} >Price</button>
           <button onClick={() => buttonSizeHandler()} className={bySizeActive ? 'by-size active' : 'by-size'}>Size</button>
