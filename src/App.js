@@ -15,6 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [houses, setHouses] = useState([])
   const [detailForHouses, setDetailForHouses] = useState([])
+  console.log(houses)
   //get  
   const myHeaders = new Headers();
   myHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
@@ -51,6 +52,7 @@ function App() {
     const url = `https://api.intern.d-tt.nl/api/houses/${selectedHouse.id}`
     const response = await fetch(url, deleteOptions)
     const result = await response.json();
+    headerFetch()
     console.log(result)
   }
   let shuffled = houses.sort(() => 0.5 - Math.random())
@@ -69,7 +71,7 @@ function App() {
         <Routes>
           <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
-          <Route path="/houseDetail" element={<HouseDetail detailForHouses={detailForHouses} recommendedShuffled={recommendedShuffled}></HouseDetail>} />
+          <Route path="/houseDetail" element={<HouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch} recommendedShuffled={recommendedShuffled}></HouseDetail>} />
 
           <Route path="/createPost" element={<CreatePost houses={houses} headerFetch={headerFetch}></CreatePost>} />
         </Routes>

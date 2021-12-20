@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useMemo, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import location from '../pictures/location.png'
 import pricePc from '../pictures/price.png'
@@ -15,14 +15,39 @@ import Modal from 'react-modal'
 import Recommended from "./Recommended";
 
 
-const HouseDetail = ({ detailForHouses, recommendedShuffled }) => {
+const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
+  console.log(headerFetch)
 
+  const navigate = useNavigate()
 
+  console.log(detailForHouses)
   const [isHovering, setIsHovering] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
   const LoremComp = useMemo(() => (
     <LoremIpsum p={1} />
   ), [])
+
+  const myHeaders = new Headers();
+  myHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
+
+  const deleteHeaders = new Headers();
+  deleteHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
+
+  var deleteOptions = {
+    method: 'DELETE',
+    headers: deleteHeaders,
+    redirect: 'follow'
+  };
+
+  const deletingItems = async () => {
+    const url = `https://api.intern.d-tt.nl/api/houses/${detailForHouses.id}`
+    await fetch(url, deleteOptions)
+    setIsModalOpen(false)
+    navigate("/house", { replace: true })
+    headerFetch()
+
+  }
 
   const customStyles = {
     content: {
@@ -61,13 +86,14 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled }) => {
               <Modal
                 isOpen={isModalOpen}
                 style={customStyles}
+                ariaHideApp={false}
               >
                 <div className="modal">
                   <h1>Delete listing</h1>
                   <p>Are you sure want to delete this listing? <br />
                     This action cannot be undone.</p>
                   <div className="modal-button">
-                    <button className="yes">YES, DELETE</button>
+                    <button className="yes" onClick={deletingItems}>YES, DELETE</button>
                     <button onClick={() => setIsModalOpen(false)} className="no">GO BACK</button>
                   </div>
                 </div>

@@ -7,44 +7,31 @@ import clear from '../pictures/clear.png'
 
 
 const House = ({ houses, deletingItems }) => {
-
-
-  const [byPrice, setByPrice] = useState(houses)
-  const [bySize, setBySize] = useState(houses)
   const [byPriceActive, setByPriceActive] = useState(true)
   const [bySizeActive, setBySizeActive] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredHouse, setFilteredHouse] = useState([])
   const [showResult, setShowResult] = useState(false)
-  const [isClear, setIsClear] = useState(false)
 
-
-
-
-  const handleInputValue = (e) => {
-    setSearchTerm(e.target.value)
-  }
-  const resetInputField = () => {
-    setSearchTerm("");
-  };
-
+  console.log(houses)
   const buttonPriceHandler = () => {
     setByPriceActive(true)
     setBySizeActive(false)
-    let sortByPrice = houses.sort(function (a, b) { return a.price - b.price });
-    setByPrice(sortByPrice)
+    console.log(filteredHouse)
+    let sortByPrice = filteredHouse.sort(function (a, b) { return a.price - b.price });
+    setFilteredHouse(sortByPrice)
 
   }
   const buttonSizeHandler = () => {
     setBySizeActive(true)
     setByPriceActive(false)
-    let sortBySize = houses.sort(function (a, b) { return a.size - b.size })
-    setBySize(sortBySize)
+    let sortBySize = filteredHouse.sort(function (a, b) { return a.size - b.size })
+    setFilteredHouse(sortBySize)
   }
 
 
   useEffect(() => {
-    setFilteredHouse(houses.filter((house) => {
+    const filtered = houses.filter((house) => {
       if (searchTerm === '') {
         setShowResult(false)
         return true
@@ -55,8 +42,20 @@ const House = ({ houses, deletingItems }) => {
       }
 
       return false
-    }))
+    })
+    if (byPriceActive) {
+      setFilteredHouse(filtered.sort(function (a, b) { return a.price - b.price }))
+    } else {
+      setFilteredHouse(filtered.sort(function (a, b) { return a.size - b.size }))
+    }
+
   }, [searchTerm])
+  const handleInputValue = (e) => {
+    setSearchTerm(e.target.value)
+  }
+  const resetInputField = () => {
+    setSearchTerm("");
+  };
 
 
   return (
@@ -70,7 +69,7 @@ const House = ({ houses, deletingItems }) => {
 
         <input type='text' className='input' value={searchTerm} placeholder='Search for a house' onChange={handleInputValue}
         />
-        <img src={clear} alt='clear' className='input-clear' onClick={resetInputField}></img>
+        {searchTerm && <img src={clear} alt='clear' className='input-clear' onClick={resetInputField}></img>}
         <div className='by'>
           <button onClick={() => buttonPriceHandler()} className={byPriceActive ? 'by-price active' : 'by-price'} >Price</button>
           <button onClick={() => buttonSizeHandler()} className={bySizeActive ? 'by-size active' : 'by-size'}>Size</button>
