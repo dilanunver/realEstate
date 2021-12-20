@@ -13,7 +13,6 @@ const House = ({ houses, deletingItems }) => {
   const [filteredHouse, setFilteredHouse] = useState([])
   const [showResult, setShowResult] = useState(false)
 
-  console.log(houses)
   const buttonPriceHandler = () => {
     setByPriceActive(true)
     setBySizeActive(false)

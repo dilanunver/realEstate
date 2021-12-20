@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import location from '../pictures/location.png'
 import pricePc from '../pictures/price.png'
 import sizePc from '../pictures/ic_size.png'
@@ -13,10 +12,11 @@ import deleteObj from '../pictures/delete.png'
 import editObj from '../pictures/edit.png'
 import Modal from 'react-modal'
 import Recommended from "./Recommended";
+import EditHouseDetail from "./EditHouseDetail";
 
 
 const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
-  console.log(headerFetch)
+
 
   const navigate = useNavigate()
 
@@ -31,6 +31,7 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
   const myHeaders = new Headers();
   myHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
 
+
   const deleteHeaders = new Headers();
   deleteHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
 
@@ -39,15 +40,20 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
     headers: deleteHeaders,
     redirect: 'follow'
   };
+  console.log(detailForHouses)
 
   const deletingItems = async () => {
     const url = `https://api.intern.d-tt.nl/api/houses/${detailForHouses.id}`
     await fetch(url, deleteOptions)
+    await headerFetch()
     setIsModalOpen(false)
     navigate("/house", { replace: true })
-    headerFetch()
-
   }
+  const editingItems = () => {
+    navigate("/editHouse", { replace: true })
+  }
+
+
 
   const customStyles = {
     content: {
@@ -79,7 +85,7 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
               <h2 className="postted-header">{detailForHouses.location.street}</h2>
               {isHovering &&
                 <span className="hovering-items">
-                  <img className="editObj" src={editObj} alt="editObj" />
+                  <img className="editObj" src={editObj} alt="editObj" onClick={editingItems} />
                   <img className="deleteObj" src={deleteObj} alt="deleteObj" onClick={() => setIsModalOpen(true)} />
                 </span>
               }

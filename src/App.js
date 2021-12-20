@@ -7,6 +7,7 @@ import { Loading } from './components/Loading';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import CreatePost from './components/CreatePost';
 import HouseDetail from './components/HouseDetail';
+import EditHouseDetail from './components/EditHouseDetail';
 
 
 
@@ -15,7 +16,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [houses, setHouses] = useState([])
   const [detailForHouses, setDetailForHouses] = useState([])
-  console.log(houses)
+
   //get  
   const myHeaders = new Headers();
   myHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
@@ -72,6 +73,7 @@ function App() {
           <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
           <Route path="/houseDetail" element={<HouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch} recommendedShuffled={recommendedShuffled}></HouseDetail>} />
+          <Route path="/editHouse" element={<EditHouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch}></EditHouseDetail>} />
 
           <Route path="/createPost" element={<CreatePost houses={houses} headerFetch={headerFetch}></CreatePost>} />
         </Routes>
