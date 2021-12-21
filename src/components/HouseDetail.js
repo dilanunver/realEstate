@@ -85,7 +85,7 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
               <h2 className="postted-header">{detailForHouses.location.street}</h2>
               {isHovering &&
                 <span className="hovering-items">
-                  <img className="editObj" src={editObj} alt="editObj" onClick={editingItems} />
+                  <Link to={`/editHouse/${detailForHouses.id}`}><img className="editObj" src={editObj} alt="editObj" onClick={editingItems} /></Link>
                   <img className="deleteObj" src={deleteObj} alt="deleteObj" onClick={() => setIsModalOpen(true)} />
                 </span>
               }

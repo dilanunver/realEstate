@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import deleteObj from '../pictures/delete.png'
 import editObj from '../pictures/edit.png'
-
+import { Link } from 'react-router-dom'
 
 
 const SingleHouse = ({ house, deletingItems }) => {
@@ -41,19 +41,22 @@ const SingleHouse = ({ house, deletingItems }) => {
           </div>
         </div>
       </div>
-      {showItem &&
+      {showItem && house.madeByMe &&
         <div className='showing-items'>
-
-          <img
-            className='edit'
-            src={editObj}
-            alt='editObj'>
-          </img>
-          <img onClick={() => deletingItems(house)}
-            className='delete'
-            src={deleteObj}
-            alt='deleteObj'>
-          </img>
+          <Link to={`/editHouse/${house.id}`}>
+            <img
+              className='edit'
+              src={editObj}
+              alt='editObj'>
+            </img>
+          </Link>
+          <Link to={`/house`}>
+            <img onClick={() => deletingItems(house)}
+              className='delete'
+              src={deleteObj}
+              alt='deleteObj'>
+            </img>
+          </Link>
         </div>
       }
     </div>)

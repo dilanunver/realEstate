@@ -39,11 +39,13 @@ function App() {
   const headerFetch = async () => {
     const response = await fetch("https://api.intern.d-tt.nl/api/houses", requestOptions)
     const result = await response.json();
+    console.log(result)
     setDetailForHouses(result[result.length - 1])
     let byPrice = result.sort(function (a, b) { return a.price - b.price })
     setHouses(byPrice)
     setLoading(false);
   }
+
 
   useEffect(() => {
     headerFetch()
@@ -73,7 +75,7 @@ function App() {
           <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
           <Route path="/houseDetail" element={<HouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch} recommendedShuffled={recommendedShuffled}></HouseDetail>} />
-          <Route path="/editHouse" element={<EditHouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch}></EditHouseDetail>} />
+          <Route path="/editHouse/:id" element={<EditHouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch}></EditHouseDetail>} />
 
           <Route path="/createPost" element={<CreatePost houses={houses} headerFetch={headerFetch}></CreatePost>} />
         </Routes>
