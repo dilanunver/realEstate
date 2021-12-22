@@ -12,7 +12,7 @@ import deleteObj from '../pictures/delete.png'
 import editObj from '../pictures/edit.png'
 import Modal from 'react-modal'
 import Recommended from "./Recommended";
-import EditHouseDetail from "./EditHouseDetail";
+
 
 
 const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
@@ -40,7 +40,6 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
     headers: deleteHeaders,
     redirect: 'follow'
   };
-  console.log(detailForHouses)
 
   const deletingItems = async () => {
     const url = `https://api.intern.d-tt.nl/api/houses/${detailForHouses.id}`

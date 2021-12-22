@@ -75,7 +75,7 @@ function App() {
           <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
           <Route path="/houseDetail" element={<HouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch} recommendedShuffled={recommendedShuffled}></HouseDetail>} />
-          <Route path="/editHouse/:id" element={<EditHouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch}></EditHouseDetail>} />
+          <Route path="/editHouse/:id" element={<EditHouseDetail detailForHouses={detailForHouses} houses={houses} headerFetch={headerFetch}></EditHouseDetail>} />
 
           <Route path="/createPost" element={<CreatePost houses={houses} headerFetch={headerFetch}></CreatePost>} />
         </Routes>
