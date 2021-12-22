@@ -1,11 +1,12 @@
-import React, { useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import SingleInput from "./SingleInput";
 import Description from "./Description";
 import remove from '../pictures/remove.png'
 import plus from '../pictures/plus.png'
 
-const EditHouseDetail = ({ detailForHouses, houses }) => {
+const EditHouseDetail = ({ houses, headerFetch }) => {
+  const navigate = useNavigate()
 
   const { id } = useParams()
   console.log(id)
@@ -26,11 +27,31 @@ const EditHouseDetail = ({ detailForHouses, houses }) => {
   const inputRef = useRef();
   const [showErrorMessage, setShowErrorMessage] = useState(false)
   const [image, setImage] = useState('')
+  const [isPosted, setIsPosted] = useState(false)
   const [error, setError] = useState(false);
+  const [house, setHouse] = useState([])
 
 
-  const result = houses.find((house) => house.id === Number(id));
-  console.log(result)
+  useEffect(() => {
+    const result = houses.find((house) => house.id === Number(id));
+
+    let streetHouseNum = result.location.street.split(' ');
+    let newHouseNum = streetHouseNum[streetHouseNum.length - 1]
+
+    setHouse(result)
+    setStreet(result.location.street)
+    setHouseNum(newHouseNum)
+    setPostalCode(result.location.zip)
+    setCity(result.location.city)
+    setPrice(result.price)
+    setSize(result.size)
+    setGarage(result.garage)
+    setBedroom(result.rooms.bedrooms)
+    setBathroom(result.rooms.bathrooms)
+    setConstructionDate(result.constructionYear)
+    setDescription(result.description)
+  }, [])
+
 
 
   const handlePicture = (e) => {
@@ -60,6 +81,7 @@ const EditHouseDetail = ({ detailForHouses, houses }) => {
 
   }
   const save = () => {
+    setIsPosted(true)
     const editingHeaders = new Headers();
     editingHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
 
@@ -67,18 +89,18 @@ const EditHouseDetail = ({ detailForHouses, houses }) => {
     editHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
 
     var formdata = new FormData();
-    formdata.append("price", result.price);
-    formdata.append("bedrooms", result.rooms.bedrooms);
-    formdata.append("bathrooms", result.rooms.bathrooms);
-    formdata.append("houseNumber", result.houseNum);
-    formdata.append("numberAddition", result.addition);
-    formdata.append("size", result.size);
-    formdata.append("streetName", result.location.street);
-    formdata.append("zip", result.location.zip);
-    formdata.append("city", result.location.city);
-    formdata.append("constructionYear", result.constructionYear);
-    formdata.append("hasGarage", result.hasGarage);
-    formdata.append("description", result.description);
+    formdata.append("price", price);
+    formdata.append("bedrooms", bedroom);
+    formdata.append("bathrooms", bathroom);
+    formdata.append("houseNumber", houseNum);
+    formdata.append("numberAddition", addition);
+    formdata.append("size", size);
+    formdata.append("streetName", street);
+    formdata.append("zip", postalCode);
+    formdata.append("city", city);
+    formdata.append("constructionYear", constructionDate);
+    formdata.append("hasGarage", garage);
+    formdata.append("description", description);
 
     var editOptions = {
       method: 'POST',
@@ -89,13 +111,13 @@ const EditHouseDetail = ({ detailForHouses, houses }) => {
 
 
 
-    fetch(`https://api.intern.d-tt.nl/api/houses/${result.id}`, editOptions)
+    fetch(`https://api.intern.d-tt.nl/api/houses/${house.id}`, editOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
+      .then(result => headerFetch())
+      .then(() => navigate("/house", { replace: true }))
       .catch(error => console.log('error', error));
 
   }
-
   const isButtonDisabled = street === '' || houseNum === '' || postalCode === '' || city === '' || price === '' || size === '' || garage === '' || bedroom === '' || bathroom === '' || constructionDate === '' || description === '' || !prevImage
 
   return (
@@ -104,13 +126,13 @@ const EditHouseDetail = ({ detailForHouses, houses }) => {
       <Link className='back' to='/house'>Back to overview</Link>
       <h2>Create new listing</h2>
       <div className='all-inputs' >
-        <SingleInput value={result.location.street} required label={'Street name*'} placeholder={'Enter the street name'} onChange={(e) => setStreet(e.target.value)}></SingleInput>
+        <SingleInput value={street} required label={'Street name*'} placeholder={'Enter the street name'} onChange={(e) => setStreet(e.target.value)}></SingleInput>
         <div className='two-inputs-holder'>
-          <SingleInput className={'two-inputs'} value={result.houseNum} required label={"House number*"} placeholder={'Enter house number'} onChange={(e) => setHouseNum(e.target.value)} ></SingleInput>
-          <SingleInput className={'two-inputs'} value={result.addition} label={"Addition (optional)"} placeholder={'e.g. A'} onChange={(e) => setAddition(e.target.value)} ></SingleInput>
+          <SingleInput className={'two-inputs'} value={houseNum} required label={"House number*"} placeholder={'Enter house number'} onChange={(e) => setHouseNum(e.target.value)} ></SingleInput>
+          <SingleInput className={'two-inputs'} value={addition} label={"Addition (optional)"} placeholder={'e.g. A'} onChange={(e) => setAddition(e.target.value)} ></SingleInput>
         </div>
-        <SingleInput value={result.location.zip} required label={'Postal code*'} placeholder={'e.g. 1000 AA'} onChange={(e) => setPostalCode(e.target.value)}></SingleInput>
-        <SingleInput value={result.location.city} required label={'City*'} placeholder={'e.g. Utrecht'} onChange={(e) => setCity(e.target.value)}></SingleInput>
+        <SingleInput value={postalCode} required label={'Postal code*'} placeholder={'e.g. 1000 AA'} onChange={(e) => setPostalCode(e.target.value)}></SingleInput>
+        <SingleInput value={city} required label={'City*'} placeholder={'e.g. Utrecht'} onChange={(e) => setCity(e.target.value)}></SingleInput>
         <div className='single-input'>
           Upload picture (PNG or JPG)*
           <label htmlFor='file-image'>
@@ -124,13 +146,13 @@ const EditHouseDetail = ({ detailForHouses, houses }) => {
             {error && <p>File not supported</p>}
           </div>
         </div>
-        <SingleInput value={result.price} required label={'Price*'} placeholder={'e.g. €150.000'} onChange={(e) => setPrice(e.target.value)}></SingleInput>
+        <SingleInput value={price} required label={'Price*'} placeholder={'e.g. €150.000'} onChange={(e) => setPrice(e.target.value)}></SingleInput>
 
         <div className='two-inputs-holder'>
-          <SingleInput className={'two-inputs'} value={result.size} required label={"Size*"} placeholder={'e.g. 60m2'} onChange={(e) => setSize(e.target.value)} ></SingleInput>
+          <SingleInput className={'two-inputs'} value={size} required label={"Size*"} placeholder={'e.g. 60m2'} onChange={(e) => setSize(e.target.value)} ></SingleInput>
           <div className='two-inputs'>
             <label>Garage </label>
-            <select value={result.hasGarage} className='garage' onChange={(e) => setGarage(e.target.value)}>
+            <select value={garage} className='garage' onChange={(e) => setGarage(e.target.value)}>
               <option value="" disabled selected>Select</option>
               <option value='yes'>Yes</option>
               <option value='no'>No</option>
@@ -138,11 +160,11 @@ const EditHouseDetail = ({ detailForHouses, houses }) => {
           </div>
         </div>
         <div className='two-inputs-holder'>
-          <SingleInput className={'two-inputs'} value={result.rooms.bedrooms} required label={"Bedrooms*"} placeholder={'Enter amount'} onChange={(e) => setBedroom(e.target.value)} ></SingleInput>
-          <SingleInput className={'two-inputs'} value={result.rooms.bathrooms} required label={"Bathrooms*"} placeholder={'Enter amount'} onChange={(e) => setBathroom(e.target.value)} ></SingleInput>
+          <SingleInput className={'two-inputs'} value={bedroom} required label={"Bedrooms*"} placeholder={'Enter amount'} onChange={(e) => setBedroom(e.target.value)} ></SingleInput>
+          <SingleInput className={'two-inputs'} value={bathroom} required label={"Bathrooms*"} placeholder={'Enter amount'} onChange={(e) => setBathroom(e.target.value)} ></SingleInput>
         </div>
-        <SingleInput value={result.constructionYear} required label={'Construction date*'} placeholder={'e.g. 1990'} onChange={(e) => setConstructionDate(e.target.value)}></SingleInput>
-        <Description value={result.description} required label={'Description'} placeholder={'Enter description'} onChange={(e) => setDescription(e.target.value)}></Description>
+        <SingleInput value={constructionDate} required label={'Construction date*'} placeholder={'e.g. 1990'} onChange={(e) => setConstructionDate(e.target.value)}></SingleInput>
+        <Description value={description} required label={'Description'} placeholder={'Enter description'} onChange={(e) => setDescription(e.target.value)}></Description>
 
         <div className='single-input'>
           <button className='button-post' disabled={isButtonDisabled} onClick={save}>Save</button>
