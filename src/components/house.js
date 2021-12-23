@@ -48,7 +48,7 @@ const House = ({ houses, deletingItems }) => {
       setFilteredHouse(filtered.sort(function (a, b) { return a.size - b.size }))
     }
 
-  }, [searchTerm])
+  }, [searchTerm, houses])
   const handleInputValue = (e) => {
     setSearchTerm(e.target.value)
   }

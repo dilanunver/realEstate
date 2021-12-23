@@ -5,10 +5,6 @@ import sizePc from '../pictures/ic_size.png'
 
 const Recommended = ({ element }) => {
 
-
-
-
-
   return (
 
     <div className="recommended-items">

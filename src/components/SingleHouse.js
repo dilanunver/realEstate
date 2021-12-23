@@ -50,13 +50,13 @@ const SingleHouse = ({ house, deletingItems }) => {
               alt='editObj'>
             </img>
           </Link>
-          <Link to={`/house`}>
-            <img onClick={() => deletingItems(house)}
-              className='delete'
-              src={deleteObj}
-              alt='deleteObj'>
-            </img>
-          </Link>
+
+          <img onClick={() => deletingItems(house)}
+            className='delete'
+            src={deleteObj}
+            alt='deleteObj'>
+          </img>
+
         </div>
       }
     </div>)

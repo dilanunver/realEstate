@@ -19,8 +19,6 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
 
 
   const navigate = useNavigate()
-
-  console.log(detailForHouses)
   const [isHovering, setIsHovering] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -71,7 +69,7 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
   return (
     <div className="flex">
       <div className='postted-house'>
-        <Link className='back' to='/house'>Back to overview</Link>
+        <Link className='back' to='/'>Back to overview</Link>
         <div className="house-detail">
           <div className="bc-white"
 

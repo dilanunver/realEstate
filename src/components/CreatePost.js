@@ -32,8 +32,12 @@ const CreatePost = ({ headerFetch }) => {
 
 
   const handlePicture = (e) => {
+
     uploadingImage(e)
     setImage(e.target.files)
+    setShowErrorMessage(true)
+    console.log(image)
+    console.log(prevImage)
   }
 
   const uploadingImage = async (e) => {
@@ -42,6 +46,7 @@ const CreatePost = ({ headerFetch }) => {
     const selected = e.target.files[0]
     const allowedTypes = ["image/png", "image/jpg", "image/jpeg"]
     if (selected === undefined) {
+
       console.log('bos')
       return
     }
@@ -127,6 +132,7 @@ const CreatePost = ({ headerFetch }) => {
             <div style={{ background: prevImage ? `url("${prevImage}") no-repeat center/cover` : `url("${plus}") no-repeat center` }} className='dotted' ></div>
           </label>
           <input type='file' required ref={inputRef} alt='image' onChange={handlePicture} id='file-image' ></input>
+
           {!prevImage && showErrorMessage ? <p className='error-message'>Required field missing</p> : ''}
           {prevImage && (
             <img src={remove} alt='remove' onClick={() => { inputRef.current.value = ''; setPrevImage(null) }} className='remove'></img>)}

@@ -54,17 +54,16 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
   }, [])
 
 
-  console.log(house.image)
+
   const handlePicture = (e) => {
     uploadingImage(e)
     setImage(e.target.files)
-    console.log(e.target.files)
+
   }
 
   const uploadingImage = async (e) => {
     setError(false)
     const selected = e.target.files[0]
-    console.log(selected)
     const allowedTypes = ["image/png", "image/jpg", "image/jpeg"]
     if (selected === undefined) {
       return
@@ -112,7 +111,6 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
 
     var imageEdit = new FormData();
     imageEdit.append("image", image[0]);
-    console.log(image)
 
     var editImageOptions = {
       method: 'POST',
@@ -131,12 +129,13 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
         .then(result => console.log(result))
         .catch(error => console.log('error', error))
     ]).then((values) => {
-      headerFetch().then(() => navigate("/house", { replace: true }))
-      console.log(values);
+      headerFetch()
+        .then(() => navigate("/house", { replace: true }))
+
     });
   }
   const isButtonDisabled = street === '' || houseNum === '' || postalCode === '' || city === '' || price === '' || size === '' || garage === '' || bedroom === '' || bathroom === '' || constructionDate === '' || description === '' || !prevImage
-  console.log(prevImage)
+
   return (
     <div className='create-post'>
 

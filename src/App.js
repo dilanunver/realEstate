@@ -52,11 +52,12 @@ function App() {
   }, [])
 
   const deletingItems = async (selectedHouse) => {
+    console.log(selectedHouse)
     const url = `https://api.intern.d-tt.nl/api/houses/${selectedHouse.id}`
     const response = await fetch(url, deleteOptions)
-    const result = await response.json();
+    console.log(response)
     headerFetch()
-    console.log(result)
+
   }
   let shuffled = houses.sort(() => 0.5 - Math.random())
   let recommendedShuffled = shuffled.slice(0, 3)
@@ -72,7 +73,7 @@ function App() {
       <div className="App">
         <Nav />
         <Routes>
-          <Route path="/house" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
+          <Route exact path="/" element={<House houses={houses} deletingItems={deletingItems} ></House>} />
           <Route path="/about" element={<About></About>} />
           <Route path="/houseDetail" element={<HouseDetail detailForHouses={detailForHouses} headerFetch={headerFetch} recommendedShuffled={recommendedShuffled}></HouseDetail>} />
           <Route path="/editHouse/:id" element={<EditHouseDetail detailForHouses={detailForHouses} houses={houses} headerFetch={headerFetch}></EditHouseDetail>} />
