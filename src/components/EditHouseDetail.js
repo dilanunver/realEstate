@@ -10,7 +10,7 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
 
   const { id } = useParams()
   console.log(id)
-
+  const [house, setHouse] = useState([])
   const [street, setStreet] = useState('')
   const [houseNum, setHouseNum] = useState(23)
   const [addition, setAddition] = useState('')
@@ -29,7 +29,7 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
   const [image, setImage] = useState('')
   const [isPosted, setIsPosted] = useState(false)
   const [error, setError] = useState(false);
-  const [house, setHouse] = useState([])
+
 
 
   useEffect(() => {
@@ -45,23 +45,26 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
     setCity(result.location.city)
     setPrice(result.price)
     setSize(result.size)
-    setGarage(result.garage)
+    setGarage(result.hasGarage)
     setBedroom(result.rooms.bedrooms)
     setBathroom(result.rooms.bathrooms)
     setConstructionDate(result.constructionYear)
     setDescription(result.description)
+    setPrevImage(result.image)
   }, [])
 
 
-
+  console.log(house.image)
   const handlePicture = (e) => {
     uploadingImage(e)
     setImage(e.target.files)
+    console.log(e.target.files)
   }
-  const uploadingImage = async (e) => {
 
+  const uploadingImage = async (e) => {
     setError(false)
     const selected = e.target.files[0]
+    console.log(selected)
     const allowedTypes = ["image/png", "image/jpg", "image/jpeg"]
     if (selected === undefined) {
       return
@@ -72,21 +75,19 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
       reader.onloadend = () => {
         setPrevImage(reader.result)
 
+
       };
       reader.readAsDataURL(selected)
 
     } else {
       setError(true)
     }
-
   }
+
   const save = () => {
     setIsPosted(true)
-    const editingHeaders = new Headers();
+    var editingHeaders = new Headers();
     editingHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
-
-    var editHeaders = new Headers();
-    editHeaders.append("X-Api-Key", "pWdHLoqaRIgeXl79-CnOmv0KJ6ANYBt4");
 
     var formdata = new FormData();
     formdata.append("price", price);
@@ -102,24 +103,40 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
     formdata.append("hasGarage", garage);
     formdata.append("description", description);
 
-    var editOptions = {
+    var requestOptions = {
       method: 'POST',
-      headers: editHeaders,
+      headers: editingHeaders,
       body: formdata,
       redirect: 'follow'
     };
 
+    var imageEdit = new FormData();
+    imageEdit.append("image", image[0]);
+    console.log(image)
 
+    var editImageOptions = {
+      method: 'POST',
+      headers: editingHeaders,
+      body: imageEdit,
+      redirect: 'follow'
+    };
 
-    fetch(`https://api.intern.d-tt.nl/api/houses/${house.id}`, editOptions)
-      .then(response => response.text())
-      .then(result => headerFetch())
-      .then(() => navigate("/house", { replace: true }))
-      .catch(error => console.log('error', error));
-
+    Promise.all([
+      fetch(`https://api.intern.d-tt.nl/api/houses/${house.id}/upload`, editImageOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error)),
+      fetch(`https://api.intern.d-tt.nl/api/houses/${house.id}`, requestOptions)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error))
+    ]).then((values) => {
+      headerFetch().then(() => navigate("/house", { replace: true }))
+      console.log(values);
+    });
   }
   const isButtonDisabled = street === '' || houseNum === '' || postalCode === '' || city === '' || price === '' || size === '' || garage === '' || bedroom === '' || bathroom === '' || constructionDate === '' || description === '' || !prevImage
-
+  console.log(prevImage)
   return (
     <div className='create-post'>
 
