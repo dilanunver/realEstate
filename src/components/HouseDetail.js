@@ -50,7 +50,7 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
     navigate("/editHouse", { replace: true })
   }
 
-
+  console.log(detailForHouses.image)
 
   const customStyles = {
     content: {

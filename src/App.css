@@ -368,6 +368,10 @@ input:focus {
   background-color: #eb544069;
   cursor: initial;
 }
+.position {
+  position: relative;
+  width: 110px;
+}
 .dotted {
   cursor: pointer;
   display: flex;
@@ -390,7 +394,8 @@ input[type="text"] {
 .remove {
   position: absolute;
   bottom: 24.8%;
-  left: 20.8%;
+  right: 0;
+  top: 0;
   cursor: pointer;
 }
 
@@ -529,6 +534,7 @@ img.garage-pc {
   padding: 15px 30px 25px;
   line-height: 1.8;
   color: #4a4b4c;
+  word-break: break-all;
 }
 
 .inside-house {

@@ -79,7 +79,7 @@ const House = ({ houses, deletingItems }) => {
 
       </div>
 
-      {filteredHouse.length === 0 &&
+      {filteredHouse.length === 0 && searchTerm &&
         <div className='filtered-houses'>
           <img src={emptyHouse} alt='empty-house'></img>
           <p>No results found. <br />

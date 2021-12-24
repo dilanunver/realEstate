@@ -139,8 +139,8 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
   return (
     <div className='create-post'>
 
-      <Link className='back' to='/house'>Back to overview</Link>
-      <h2>Create new listing</h2>
+      <Link className='back' to='/'>Back to overview</Link>
+      <h2>Edit listing</h2>
       <div className='all-inputs' >
         <SingleInput value={street} required label={'Street name*'} placeholder={'Enter the street name'} onChange={(e) => setStreet(e.target.value)}></SingleInput>
         <div className='two-inputs-holder'>
