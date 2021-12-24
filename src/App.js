@@ -1,8 +1,8 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import Nav from './components/Nav';
-import About from './components/About';
-import House from './components/House';
+import About from './components/about';
+import House from './components/house';
 import { Loading } from './components/Loading';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import CreatePost from './components/CreatePost';
