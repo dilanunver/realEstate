@@ -5,6 +5,8 @@ const About = () => {
   return (
     <div className='about-page'>
       <h1>About DTT Real Estate</h1>
+      <h1 className='about-small'>About</h1>
+      <h1 className='about-smallest'>About DTT Real Estate</h1>
       <p className='about-lorem'>  <LoremIpsum p={1} avgSentencesPerParagraph={6}></LoremIpsum>
         <LoremIpsum p={1} avgSentencesPerParagraph={2}></LoremIpsum>
       </p>

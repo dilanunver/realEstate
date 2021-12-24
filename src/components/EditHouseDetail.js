@@ -130,7 +130,7 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
         .catch(error => console.log('error', error))
     ]).then((values) => {
       headerFetch()
-        .then(() => navigate("/house", { replace: true }))
+        .then(() => navigate("/", { replace: true }))
 
     });
   }
@@ -151,13 +151,19 @@ const EditHouseDetail = ({ houses, headerFetch }) => {
         <SingleInput value={city} required label={'City*'} placeholder={'e.g. Utrecht'} onChange={(e) => setCity(e.target.value)}></SingleInput>
         <div className='single-input'>
           Upload picture (PNG or JPG)*
-          <label htmlFor='file-image'>
-            <div style={{ background: prevImage ? `url("${prevImage}") no-repeat center/cover` : `url("${plus}") no-repeat center` }} className='dotted' ></div>
-          </label>
-          <input type='file' required ref={inputRef} alt='image' onChange={handlePicture} id='file-image' ></input>
+          <div className="position">
+            <label htmlFor='file-image'>
+              <div style={{ background: prevImage ? `url("${prevImage}") no-repeat center/cover` : `url("${plus}") no-repeat center` }} className='dotted' ></div>
+              {prevImage && (
+                <img src={remove} alt='remove' onClick={(e) => { e.preventDefault(); inputRef.current.value = ''; setPrevImage(null); setShowErrorMessage(true) }} className='remove'></img>)}
+            </label>
+          </div>
           {!prevImage && showErrorMessage ? <p className='error-message'>Required field missing</p> : ''}
-          {prevImage && (
-            <img src={remove} alt='remove' onClick={() => { inputRef.current.value = ''; setPrevImage(null) }} className='remove'></img>)}
+          <input type='file' required ref={inputRef} alt='image' onChange={handlePicture} id='file-image' ></input>
+
+
+
+
           <div className='error'>
             {error && <p>File not supported</p>}
           </div>

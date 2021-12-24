@@ -63,12 +63,14 @@ const House = ({ houses, deletingItems }) => {
       <div className='headerCreate'>
         <h1 className='header1'>Houses</h1>
         <Link className='create' to="/createPost" >Create New</Link>
+        <Link className='create-small' to="/createPost" ></Link>
       </div>
       <div className='input-sorting'>
-
-        <input type='text' className='input' value={searchTerm} placeholder='Search for a house' onChange={handleInputValue}
-        />
-        {searchTerm && <img src={clear} alt='clear' className='input-clear' onClick={resetInputField}></img>}
+        <div className='input-container'>
+          <input type='text' className='input' value={searchTerm} placeholder='Search for a house' onChange={handleInputValue}
+          />
+          {searchTerm && <img src={clear} alt='clear' className='input-clear' onClick={resetInputField}></img>}
+        </div>
         <div className='by'>
           <button onClick={() => buttonPriceHandler()} className={byPriceActive ? 'by-price active' : 'by-price'} >Price</button>
           <button onClick={() => buttonSizeHandler()} className={bySizeActive ? 'by-size active' : 'by-size'}>Size</button>

@@ -44,7 +44,7 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
     await fetch(url, deleteOptions)
     await headerFetch()
     setIsModalOpen(false)
-    navigate("/house", { replace: true })
+    navigate("/", { replace: true })
   }
   const editingItems = () => {
     navigate("/editHouse", { replace: true })
@@ -71,12 +71,13 @@ const HouseDetail = ({ detailForHouses, recommendedShuffled, headerFetch }) => {
       <div className='postted-house'>
         <Link className='back' to='/'>Back to overview</Link>
         <div className="house-detail">
+          <img src={detailForHouses.image} className='postted' alt='postted'></img>
+
           <div className="bc-white"
 
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
-            <img src={detailForHouses.image} className='postted' alt='postted'></img>
 
             <div className="holding-items">
               <h2 className="postted-header">{detailForHouses.location.street}</h2>

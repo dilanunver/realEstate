@@ -4,12 +4,12 @@ import Nav from './components/Nav';
 import About from './components/About';
 import House from './components/House';
 import { Loading } from './components/Loading';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import CreatePost from './components/CreatePost';
 import HouseDetail from './components/HouseDetail';
 import EditHouseDetail from './components/EditHouseDetail';
-
-
+import housefooter from './pictures/housefooter.png'
+import afooter from './pictures/afooter.png'
 
 function App() {
 
@@ -80,6 +80,18 @@ function App() {
 
           <Route path="/createPost" element={<CreatePost houses={houses} headerFetch={headerFetch}></CreatePost>} />
         </Routes>
+        <footer className='footer'>
+
+          <Link to='/' className='footer-link'>
+            <img src={housefooter} alt='housefooter'></img>
+          </Link>
+          <Link to='/about' className='footer-link'>
+            <img src={afooter} alt='afooter'></img>
+          </Link>
+
+
+        </footer>
+
       </div>
     </Router>
   )

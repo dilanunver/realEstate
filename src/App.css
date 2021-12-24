@@ -87,6 +87,9 @@ nav {
   cursor: pointer;
   text-decoration: none;
 }
+.create-small {
+  display: none;
+}
 
 .headerCreate {
   display: flex;
@@ -106,23 +109,6 @@ nav {
   border-radius: 10px;
 }
 
-.input {
-  background: url(../src/pictures/search.png) no-repeat;
-  background-position: 30px 10px;
-  background-color: #e8e8e8;
-  display: flex;
-  margin: 25px 10rem;
-  padding: 10px 70px;
-  border-radius: 10px;
-  font-family: Open Sans Regular;
-  font-size: 14px;
-  border: none;
-  width: 450px;
-}
-.input::placeholder {
-  color: #c3c3c3;
-  font-family: Montserrat;
-}
 .houseInfo {
   background-color: #ffffff;
   margin: 15px 10rem;
@@ -190,6 +176,23 @@ nav {
   padding-right: 20px;
 }
 
+.input {
+  background: url(../src/pictures/search.png) no-repeat;
+  background-position: 30px 10px;
+  background-color: #e8e8e8;
+  display: flex;
+  padding: 10px 70px;
+  border-radius: 10px;
+  font-family: Open Sans Regular;
+  font-size: 14px;
+  border: none;
+  width: 100%;
+}
+.input::placeholder {
+  color: #c3c3c3;
+  font-family: Montserrat;
+}
+
 .input-sorting {
   display: flex;
   justify-content: space-between;
@@ -197,9 +200,18 @@ nav {
 }
 .input-clear {
   position: absolute;
-  left: 35.5em;
   width: 20px;
+  right: 0;
   cursor: pointer;
+}
+.input-container {
+  position: relative;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin: 25px 10rem;
 }
 .by {
   display: flex;
@@ -278,6 +290,9 @@ h2 {
 .single-input input.empty::placeholder,
 .two-inputs input.empty::placeholder {
   color: #eb5440;
+}
+.footer {
+  display: none;
 }
 
 label {
@@ -483,6 +498,7 @@ input[type="text"] {
 .bc-white {
   background-color: #ffffff;
   margin-bottom: 35px;
+  width: 100%;
 }
 .postted-header {
   margin: 25px 30px 1px;
@@ -566,6 +582,10 @@ img.garage-pc {
   font-size: 16px;
   padding: 40px 20em 30px;
 }
+h1.about-small,
+h1.about-smallest {
+  display: none;
+}
 .about-lorem p {
   font-family: Open Sans Regular;
   font-size: 16px;
@@ -627,4 +647,235 @@ img.garage-pc {
 }
 .no {
   background-color: #4a4b4c;
+}
+@media only screen and (max-width: 728px) {
+  .navbar {
+    display: none;
+  }
+  .house {
+    padding: 0;
+  }
+  .headerCreate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  .header1 {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .houseInfo {
+    margin: 10px;
+  }
+  .houseInfo img {
+    width: 100px;
+    height: 100px;
+  }
+  .aboutHouse {
+    height: 100px;
+  }
+  .aboutHouse h1,
+  .aboutHouse .price,
+  .city,
+  .insideHouse {
+    font-size: 14px;
+  }
+  .aboutHouse h1 {
+    padding: 0 10px;
+  }
+  .aboutHouse .price {
+    padding: 5px 10px;
+  }
+  .aboutHouse .city {
+    padding: 0 10px;
+  }
+  .insideHouse {
+    padding: 10px;
+  }
+  .input-sorting {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .by {
+    margin: 0 10px;
+    width: 95%;
+  }
+  .by-price,
+  .by-size {
+    width: 100%;
+  }
+  .show-result {
+    font-size: 20px;
+    margin: 20px 15px;
+  }
+  .create {
+    display: none;
+  }
+  .create-small {
+    background: url(../src/pictures/plus2x.png);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    height: 20px;
+    display: block;
+    width: 20px;
+    position: absolute;
+    right: 2.5%;
+  }
+  .back {
+    display: none;
+  }
+  .create-post h2 {
+    background: url(../src/pictures/ic_back_grey.png);
+    background-repeat: no-repeat;
+    font-size: 20px;
+    margin: 0 0 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25%;
+  }
+  .all-inputs {
+    margin-left: 15px;
+    width: 90%;
+  }
+  .single-input {
+    width: 100%;
+  }
+  .two-inputs-holder {
+    width: 100%;
+  }
+  .button-post {
+    width: 100%;
+    margin: 20px 0;
+  }
+  .error-message {
+    font-size: 12px;
+  }
+  .text-area,
+  .single-input input,
+  .two-inputs input {
+    font-size: 12px;
+  }
+  .postted-house {
+    padding: 0;
+  }
+  .house-detail {
+    margin: 0;
+  }
+  .flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .bc-white {
+    border-radius: 30px 30px 0 0;
+    position: absolute;
+    bottom: 35%;
+    left: 0%;
+  }
+  img.postted {
+    width: 100%;
+    height: auto;
+  }
+  img.location {
+    padding-right: 10px;
+  }
+  .recommended {
+    margin: 15em 0 0;
+  }
+  .recommended h2 {
+    font-size: 16px;
+  }
+  .recommended-items {
+    width: 450px;
+  }
+  .holding-items {
+    padding-top: 10px;
+  }
+  .about-page {
+    padding: 0;
+  }
+  .about-page h1 {
+    display: none;
+  }
+  .about-page h1.about-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+  }
+  .about-page h1.about-smallest {
+    display: flex;
+    font-size: 16px;
+    padding: 0 15px;
+  }
+  .about-lorem {
+    padding: 0 15px;
+  }
+  .about-page h1.design {
+    display: flex;
+    padding: 20px 15px 0;
+    font-size: 12px;
+  }
+  .img-link {
+    padding: 0 15px;
+  }
+  .logo-about {
+    width: 25%;
+  }
+
+  .showing-items .delete {
+    width: 20px;
+    height: auto;
+    background-size: contain;
+  }
+  .showing-items img.edit {
+    width: 20px;
+    height: auto;
+    background-size: contain;
+    padding: 0;
+    margin-right: 10px;
+  }
+  .footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    height: 50px;
+  }
+  .footer-link img {
+    padding-top: 10px;
+    width: 35px;
+    height: auto;
+  }
+  .filtered-houses img {
+    width: 300px;
+    height: auto;
+    padding: 0;
+  }
+  .input {
+    width: 95%;
+    margin: 0;
+  }
+  .input-clear {
+    right: 3%;
+  }
+  .input-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
 }
